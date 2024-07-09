@@ -11,7 +11,7 @@ export async function send(message) {
 
     if (response.code === 0) {
       // return tx hash to UI
-      return response.data.hash;
+      return response.data;
     } else {
       throw new Error(response.message);
     }
@@ -19,4 +19,9 @@ export async function send(message) {
     // @TODO add error handler
     alert(error.message);
   }
+}
+
+export function formatTimestamp(t) {
+  const now = new Date(t * 1000);
+  return `${now.toLocaleDateString()} ${now.toLocaleTimeString()}`;
 }

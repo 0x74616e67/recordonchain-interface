@@ -1,26 +1,27 @@
 import { useCallback, useEffect, useState } from "react";
-import { send } from "./../utils";
+import { send, formatTimestamp } from "./../utils";
+import QRCode from "@/components/QRCode";
 
 export default function Home() {
-  const [hash, setHash] = useState("");
-  const [msg, setMsg] = useState("");
+  const [tx, setTx] = useState("");
+  const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
 
   const handleChange = useCallback((e) => {
-    setMsg(e.target.value);
+    setMessage(e.target.value);
   }, []);
 
   const handleSubmit = async () => {
-    if (msg) {
-      setHash("");
+    if (message) {
+      setTx(null);
       setLoading(true);
 
-      const txHash = await send(msg);
+      const tx = await send(message);
 
       setLoading(false);
-      setHash(txHash);
+      setTx(tx);
     } else {
-      alert("msg can not be null");
+      alert("message can not be null");
     }
   };
 
@@ -32,28 +33,32 @@ export default function Home() {
           placeholder="Please input your message"
           className="m-4 p-2"
           onChange={handleChange}
-          value={msg}
+          value={message}
         ></input>
         <button className="bg-sky-500/100 p-2" onClick={handleSubmit}>
           Submit
         </button>
       </div>
       <div>
-        {loading ? (
-          "Loading..."
-        ) : hash ? (
-          <span>
-            Write success, for more details, please see{" "}
-            <a
-              className=""
-              href={`https://evmtestnet.confluxscan.io/tx/${hash}`}
-              target="_blank"
-            >
-              here
-            </a>
-            .
-          </span>
-        ) : null}
+        {loading
+          ? "Loading..."
+          : tx?.hash && (
+              <div className="mt-10">
+                <span>Write success.</span>
+                <div>{tx.message}</div>
+                <div>{formatTimestamp(tx.timestamp)}</div>
+                <a
+                  className="text-blue-500 hover:text-blue-900 visited:text-blue-600"
+                  href={`https://evmtestnet.confluxscan.net/tx/${tx.hash}`}
+                  target="_blank"
+                >
+                  onchain detail
+                </a>
+                <QRCode
+                  text={`https://evmtestnet.confluxscan.net/tx/${tx.hash}`}
+                ></QRCode>
+              </div>
+            )}
       </div>
     </main>
   );
