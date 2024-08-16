@@ -1,12 +1,14 @@
 import fetch from "./fetch";
 
-export async function send(message) {
-  const url = "http://localhost:9000/record";
+const BACKEND_ENDPOINT = "http://localhost:3001/record";
+
+export async function send({ message, key }) {
+  const url = BACKEND_ENDPOINT;
 
   try {
     const response = await fetch(url, {
       method: "POST",
-      body: { key: "123456", message },
+      body: { key, message },
     });
 
     if (response.code === 0) {
