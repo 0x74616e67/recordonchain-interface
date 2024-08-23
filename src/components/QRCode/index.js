@@ -12,18 +12,25 @@ const QRCodeComponent = memo(function QRCodeComponent({
   useEffect(() => {
     if (text === "") return;
 
-    QRCode.toCanvas(myRef.current, text, function (error) {
-      if (error) {
-        console.error(error);
-        onError();
-        return;
+    QRCode.toCanvas(
+      myRef.current,
+      text,
+      {
+        width: 150,
+      },
+      function (error) {
+        if (error) {
+          console.error(error);
+          onError();
+          return;
+        }
+
+        // TODO this component render twice
+        // console.count("QRCodeComponent callback");
+
+        onSuccess();
       }
-
-      // TODO this component render twice
-      // console.count("QRCodeComponent callback");
-
-      onSuccess();
-    });
+    );
   }, [myRef, text]);
 
   // console.count("QRCodeComponent");
