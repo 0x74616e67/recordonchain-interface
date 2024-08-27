@@ -40,9 +40,11 @@ export default function Record() {
           setLoading(false);
         })
         .catch((e) => {
-          console.log(e);
+          console.log("getTxInfo: ", e);
 
           setLoading(false);
+
+          // TODO show error tips
         });
     }
   }, [txStore.tx]);

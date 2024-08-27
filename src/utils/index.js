@@ -1,4 +1,14 @@
 import fetch from "./fetch";
+import { getTxInfo as getConfluxTxInfo } from "./conflux";
+
+const NETWORKS = {
+  conflux: {
+    scan: "https://evmtestnet.confluxscan.net",
+  },
+  ethereum: {
+    scan: "https://etherscan.io/",
+  },
+};
 
 export const sleep = async function (timestemp) {
   return new Promise((resolve, reject) => {
@@ -8,14 +18,14 @@ export const sleep = async function (timestemp) {
 
 // TODO product code
 // const BACKEND_ENDPOINT = "http://47.94.76.247:3000/record";
-
-// export async function send({ message }) {
+// const BACKEND_ENDPOINT = "http://localhost:3001/record";
+// export async function send({ chain, message }) {
 //   const url = BACKEND_ENDPOINT;
 
 //   try {
 //     const response = await fetch(url, {
 //       method: "POST",
-//       body: {  message },
+//       body: { chain, message },
 //     });
 
 //     if (response.code === 0) {
@@ -27,18 +37,39 @@ export const sleep = async function (timestemp) {
 //   } catch (error) {
 //     // @TODO add error handler
 //     alert(error.message);
+
+//     return null;
 //   }
+// }
+
+// export async function getTxInfo(chain, hash) {
+//   let tx = {};
+
+//   if (chain.toLowerCase() === "conflux") {
+//     tx = await getConfluxTxInfo(hash);
+//   }
+
+//   const response = {
+//     code: 0,
+//     data: {
+//       hash: tx.hash,
+//       timestamp: tx.timestamp,
+//       message: tx.data,
+//     },
+//     message: "",
+//   };
+
+//   return response;
 // }
 
 // TODO for test
 const BACKEND_ENDPOINT = "http://localhost:3001/record";
-export async function send({ message }) {
-  const url = BACKEND_ENDPOINT;
-
+export async function send({ chain, message }) {
   try {
     const response = {
       code: 0,
       data: {
+        chain: "conflux",
         hash: "0xa3f06db998c45deff1a94b88d7be3d816f270ecd6552b5309221bec49dfbc6ff",
         timestamp: 1723978181,
         message: message,
@@ -61,17 +92,18 @@ export async function send({ message }) {
 }
 
 export async function getTxInfo(chain, hash) {
+  // await sleep(1000);
+
   const response = {
     code: 0,
     data: {
+      chain: "conflux",
       hash: "0xa3f06db998c45deff1a94b88d7be3d816f270ecd6552b5309221bec49dfbc6ff",
       timestamp: 1723978181,
-      message: "message",
+      message: "fake tx data",
     },
     message: "",
   };
-
-  await sleep(1000);
 
   return response;
 }
@@ -81,6 +113,6 @@ export function formatTimestamp(t) {
   return `${now.toLocaleDateString()} ${now.toLocaleTimeString()}`;
 }
 
-export function getTxURL(hash) {
-  return `https://evmtestnet.confluxscan.net/tx/${hash}`;
+export function getTxURL(chain, hash) {
+  return `${NETWORKS[chain].scan}/tx/${hash}`;
 }

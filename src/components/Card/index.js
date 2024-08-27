@@ -52,7 +52,7 @@ const CardComponent = React.memo(function CardComponent({
         </div>
         <QRCode
           className="mt-4 self-end"
-          text={getTxURL(tx.hash)}
+          text={getTxURL(tx.chain, tx.hash)}
           onSuccess={handleQRCodeSuccess}
         ></QRCode>
       </div>
