@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useCallback, useState } from "react";
-import { formatTimestamp, getTxURL } from "../../utils";
+import { formatTimestamp, getTxURL, getShareURL } from "@/utils";
 import QRCode from "@/components/QRCode";
 import html2canvas from "html2canvas";
 
@@ -32,6 +32,7 @@ const CardComponent = React.memo(function CardComponent({
   const handleClose = useCallback(() => {
     document.body.style.overflow = "auto";
     setDataURL("");
+    onClose();
   }, []);
 
   if (!tx) {
@@ -52,7 +53,7 @@ const CardComponent = React.memo(function CardComponent({
         </div>
         <QRCode
           className="mt-4 self-end"
-          text={getTxURL(tx.chain, tx.hash)}
+          text={getShareURL(tx.chain, tx.hash)}
           onSuccess={handleQRCodeSuccess}
         ></QRCode>
       </div>
