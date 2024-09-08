@@ -17,8 +17,8 @@ export const sleep = async function (timestemp) {
 };
 
 // TODO product code
-// const BACKEND_ENDPOINT = "http://localhost:3001/record";
-const BACKEND_ENDPOINT = "http://47.94.76.247:3000/record";
+const BACKEND_ENDPOINT = "http://localhost:3001/record";
+// const BACKEND_ENDPOINT = "http://47.94.76.247:3000/record";
 export async function send({ chain, message }) {
   const url = BACKEND_ENDPOINT;
 
@@ -118,5 +118,5 @@ export function getTxURL(chain, hash) {
 }
 
 export function getShareURL(chain, hash) {
-  return `${location.host}/record/${chain}/${hash}`;
+  return `${location.host}/record/detail?tx=${chain}${hash}`;
 }

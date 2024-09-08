@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { useEffect, useLayoutEffect, useState } from "react";
+import { useCallback, useEffect, useLayoutEffect, useState } from "react";
 import { useTxStore } from "@/utils/store";
 import { getTxInfo } from "@/utils";
 import { formatTimestamp, getTxURL } from "@/utils";
@@ -14,18 +14,29 @@ export default function Record() {
   const [tx, setTx] = useState({});
   const [loading, setLoading] = useState(false);
 
-  const chain = router.query.slug?.[0];
-  const hash = router.query.slug?.[1];
+  // const chain = router.query.slug?.[0];
+  // const hash = router.query.slug?.[1];
 
   useEffect(() => {
     // const params = new URLSearchParams(window.location.search);
     // const pchain = params.get("chain");
     // const phash = params.get("hash");
 
-    const chain = router.query.slug?.[0];
-    const hash = router.query.slug?.[1];
+    let txs = [];
 
-    // console.log(123, router.query.slug, chain, hash);
+    try {
+      let params = new URLSearchParams(/\?.*/.exec(router.asPath)?.[0]);
+      txs = params.getAll("tx");
+    } catch (e) {
+      console.log("decode URL search params error");
+      console.log(e);
+    }
+
+    let tx = txs[0];
+
+    // TODO use conflux for default
+    const chain = tx.startsWith("conflux") ? "conflux" : "";
+    const hash = tx.replace(chain, "");
 
     // invalid url, redirect to home page
     // if (!chain || !hash) {
@@ -59,7 +70,9 @@ export default function Record() {
           });
       }
     }
-  }, [txStore.tx, router.query]);
+  }, [txStore.tx, router.query, router.asPath]);
+
+  const handleClose = useCallback(() => setShowShareCard(false), []);
 
   return (
     <div>
@@ -94,7 +107,7 @@ export default function Record() {
         ) : null}
       </div>
       {showShareCard && !!Object.keys(tx).length && (
-        <Card tx={tx} onClose={() => setShowShareCard(false)}></Card>
+        <Card tx={tx} onClose={handleClose}></Card>
       )}
     </div>
   );

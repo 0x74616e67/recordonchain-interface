@@ -1,17 +1,12 @@
-"use client";
-
 import { useRouter } from "next/router";
 import { useEffect, useLayoutEffect, useState, useCallback } from "react";
 import { send } from "@/utils";
 import { useTxStore } from "@/utils/store";
 
-export default function Record() {
-  // const txStore = useTxStore((state) => ({ tx: state.tx }));
-
-  const [tx, setTx] = useState({});
-
+export default function Create() {
   const txStore = useTxStore((state) => ({ tx: state.tx, add: state.add }));
   const router = useRouter();
+
   const [message, setMessage] = useState("");
   // TODO user can select network
   const [chain, setChain] = useState("conflux");
@@ -35,11 +30,10 @@ export default function Record() {
       txStore.add(tx);
 
       router.push({
-        pathname: `/record/conflux/${tx.hash}`,
-        // query: {
-        //   chain: "conflux",
-        //   hash: tx.hash,
-        // },
+        pathname: `/record/detail`,
+        query: {
+          tx: `conflux${tx.hash}`,
+        },
       });
     } else {
       // TODO add real tips
