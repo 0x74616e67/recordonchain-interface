@@ -16,9 +16,10 @@ export const sleep = async function (timestemp) {
   });
 };
 
-// TODO product code
-const BACKEND_ENDPOINT = "http://localhost:3001/record";
-// const BACKEND_ENDPOINT = "http://47.94.76.247:3000/record";
+// // TODO product code
+// const BACKEND_ENDPOINT = location.host + "/record";
+// const BACKEND_ENDPOINT = "http://localhost:3001/record";
+const BACKEND_ENDPOINT = "http://47.94.76.247/record";
 export async function send({ chain, message }) {
   const url = BACKEND_ENDPOINT;
 
@@ -62,7 +63,7 @@ export async function getTxInfo(chain, hash) {
   return response;
 }
 
-// TODO for test
+// // TODO for test
 // const BACKEND_ENDPOINT = "http://localhost:3001/record";
 // export async function send({ chain, message }) {
 //   try {
@@ -77,7 +78,7 @@ export async function getTxInfo(chain, hash) {
 //       message: "",
 //     };
 
-//     // await sleep(1000);
+//     await sleep(1000);
 
 //     if (response.code === 0) {
 //       // return tx hash to UI
@@ -92,7 +93,7 @@ export async function getTxInfo(chain, hash) {
 // }
 
 // export async function getTxInfo(chain, hash) {
-//   // await sleep(1000);
+//   await sleep(1000);
 
 //   const response = {
 //     code: 0,
@@ -114,7 +115,7 @@ export function formatTimestamp(t) {
 }
 
 export function getTxURL(chain, hash) {
-  return `${NETWORKS[chain].scan}/tx/${hash}`;
+  return chain && hash ? `${NETWORKS[chain].scan}/tx/${hash}` : "";
 }
 
 export function getShareURL(chain, hash) {

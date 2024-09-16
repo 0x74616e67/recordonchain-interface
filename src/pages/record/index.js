@@ -2,10 +2,14 @@ import { useRouter } from "next/router";
 import { useEffect, useLayoutEffect, useState, useCallback } from "react";
 import { send } from "@/utils";
 import { useTxStore } from "@/utils/store";
+import Navbar from "@/components/Navbar";
+import Spin from "@/components/Spin";
 
 export default function Create() {
   const txStore = useTxStore((state) => ({ tx: state.tx, add: state.add }));
   const router = useRouter();
+
+  const MAX_LENGTH = 200;
 
   const [message, setMessage] = useState("");
   // TODO user can select network
@@ -44,25 +48,37 @@ export default function Create() {
   };
 
   return (
-    <div>
-      add new record page
-      <div className="">
-        <div className="flex flex-col align-center">
-          <span className="text-xs">Please input your message</span>
+    <Spin spinning={loading}>
+      <Navbar title="记录"></Navbar>
+      <div>
+        <span className="text-base">输入想记录在区块链上的内容</span>
+        <div className="flex flex-col align-center relative">
           <textarea
             placeholder=""
-            className="my-4 p-2"
+            className="my-4 p-2 border-2 border-solid border-gray0 rounded focus:border-blue0 focus:outline-none resize-none"
+            rows={6}
+            autoFocus
+            resize="none"
             onChange={handleChange}
             value={message}
+            maxLength={MAX_LENGTH}
           ></textarea>
+          <span
+            className={`absolute bottom-5 right-2 ${
+              message.length >= MAX_LENGTH ? "text-red-500" : "text-gray0"
+            }`}
+          >
+            {message.length}/{MAX_LENGTH}
+          </span>
         </div>
       </div>
-      <div>
-        <button className="bg-sky-500/100 p-2" onClick={handleSubmit}>
-          Submit
-        </button>
-      </div>
-      <div>{loading && "loading..."}</div>
-    </div>
+
+      <button
+        className="bg-blue0 text-white rounded-full flex items-center justify-center leading-none w-12 h-12 float-right"
+        onClick={handleSubmit}
+      >
+        提交
+      </button>
+    </Spin>
   );
 }

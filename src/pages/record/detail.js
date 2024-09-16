@@ -4,6 +4,8 @@ import { useTxStore } from "@/utils/store";
 import { getTxInfo } from "@/utils";
 import { formatTimestamp, getTxURL } from "@/utils";
 import Card from "@/components/Card";
+import Navbar from "@/components/Navbar";
+import Spin from "@/components/Spin";
 
 export default function Record() {
   const router = useRouter();
@@ -11,7 +13,12 @@ export default function Record() {
   const txStore = useTxStore((state) => ({ tx: state.tx }));
 
   const [showShareCard, setShowShareCard] = useState(false);
-  const [tx, setTx] = useState({});
+  const [tx, setTx] = useState({
+    hash: "",
+    message: "",
+    timestamp: 0,
+    chain: "",
+  });
   const [loading, setLoading] = useState(false);
 
   // const chain = router.query.slug?.[0];
@@ -75,40 +82,41 @@ export default function Record() {
   const handleClose = useCallback(() => setShowShareCard(false), []);
 
   return (
-    <div>
-      record page
-      <div>{loading && "loading..."}</div>
+    <Spin spinning={loading}>
+      <Navbar title="详情"></Navbar>
       <div>
-        {tx.hash ? (
-          <div className="mt-10">
-            <span>Write success. </span>
-            <div className="">
-              <div>你已经成功在区块链上记录一条信息：</div>
-              <div>{tx.message}</div>
-              <div>{formatTimestamp(tx.timestamp)}</div>
-            </div>
+        <div className="">
+          <div>
+            区块链上记录的内容（
             <a
-              className="text-blue-500 hover:text-blue-900 visited:text-blue-600"
+              className="text-blue0 hover:text-blue0-700 visited:text-blue0-600"
               href={getTxURL(tx.chain, tx.hash)}
               target="_blank"
               data-html2canvas-ignore
             >
-              onchain detail
+              详情
             </a>
-            <div>
-              <button
-                className="bg-sky-500/100 p-2"
-                onClick={() => setShowShareCard(!showShareCard)}
-              >
-                Share
-              </button>
+            ）：
+          </div>
+          <div className="bg-gray0/20 p-4 my-4 rounded">
+            <div>{tx.message}</div>
+            <div className="text-right mt-4">
+              {formatTimestamp(tx.timestamp)}
             </div>
           </div>
-        ) : null}
+          <div>
+            <button
+              className="bg-blue0 text-white rounded-full flex items-center justify-center leading-none w-12 h-12 float-right"
+              onClick={() => setShowShareCard(!showShareCard)}
+            >
+              分享
+            </button>
+          </div>
+        </div>
       </div>
       {showShareCard && !!Object.keys(tx).length && (
         <Card tx={tx} onClose={handleClose}></Card>
       )}
-    </div>
+    </Spin>
   );
 }

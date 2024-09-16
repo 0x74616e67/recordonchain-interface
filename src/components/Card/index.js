@@ -44,12 +44,11 @@ const CardComponent = React.memo(function CardComponent({
       {/* this is card template, used to generate share picture */}
       <div
         id="card"
-        className="p-4 m-4 bg-gray-500 fixed left-4 right-4 top-0 min-h-96 flex flex-col justify-between z-[-10] hidden"
+        className="absolute left-4 right-4 top-0 min-h-96 flex flex-col justify-between z-[-10] hidden bg-gray0/20 p-4 my-4 rounded"
       >
         <div className="">
-          <div>你已经成功在区块链上记录一条信息：</div>
           <div>{tx.message}</div>
-          <div>{formatTimestamp(tx.timestamp)}</div>
+          <div className="text-right mt-4">{formatTimestamp(tx.timestamp)}</div>
         </div>
         <QRCode
           className="mt-4 self-end"
@@ -60,11 +59,11 @@ const CardComponent = React.memo(function CardComponent({
       {dataURL && (
         <div
           className="
-          fixed top-0 bottom-0 left-0 right-0 overflow-y-scroll p-4 pt-9 
+          absolute top-0 bottom-0 left-0 right-0 overflow-y-scroll p-4 pt-4 
           after:content-[''] after:absolute after:top-0 after:h-full after:left-0 after:right-0 after:z-[-1] after:backdrop-blur-sm after:bg-white/30"
         >
           <div
-            className="absolute right-2 top-0 text-3xl"
+            className="absolute right-5 top-3 text-3xl text-blue0 cursor-pointer h-max"
             onClick={handleClose}
           >
             &#10005;
