@@ -66,7 +66,8 @@ const CardComponent = React.memo(function CardComponent({
             className="absolute right-5 top-3 text-3xl text-blue0 cursor-pointer h-max"
             onClick={handleClose}
           >
-            &#10005;
+            {/* &#10005; */}
+            &#215;
           </div>
           <img src={dataURL} alt="card"></img>
         </div>

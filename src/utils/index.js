@@ -17,11 +17,11 @@ export const sleep = async function (timestemp) {
 };
 
 // // TODO product code
-// const BACKEND_ENDPOINT = location.host + "/record";
-// const BACKEND_ENDPOINT = "http://localhost:3001/record";
-const BACKEND_ENDPOINT = "http://47.94.76.247/record";
 export async function send({ chain, message }) {
-  const url = BACKEND_ENDPOINT;
+  // const BACKEND_ENDPOINT = location.host + "/record";
+  // const BACKEND_ENDPOINT = "http://localhost:3001/record";
+  // const BACKEND_ENDPOINT = `${window.location.protocol}//47.94.76.247/record`;
+  const url = getBackendURL("/record");
 
   try {
     const response = await fetch(url, {
@@ -108,6 +108,10 @@ export async function getTxInfo(chain, hash) {
 
 //   return response;
 // }
+
+export function getBackendURL(path) {
+  return `${window.location.protocol}//${window.location.host}${path}`;
+}
 
 export function formatTimestamp(t) {
   const now = new Date(Number(t) * 1000);
