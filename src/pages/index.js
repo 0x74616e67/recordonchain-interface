@@ -56,9 +56,27 @@ export default function Home() {
         ))}
       </div>
 
+      <div
+        className={`text-xs font-light ${
+          process.env.SERVER_IS === "inside" ? "" : "hidden"
+        }`}
+      >
+        <a
+          href="https://beian.miit.gov.cn"
+          target="_blank"
+          className="text-blue-500"
+        >
+          陕ICP备2024048059号-1
+        </a>
+        <br></br>
+        <span>© 2024 qukuailianji.com 版权所有</span>
+      </div>
+
       <Link
         href="/record"
-        className="bg-blue0 text-white inline-block w-12 h-12 rounded-full flex items-center justify-center leading-none sticky bottom-0 left-full"
+        className={`bg-blue0 text-white inline-block w-12 h-12 rounded-full flex items-center justify-center leading-none sticky bottom-0 left-full ${
+          process.env.SERVER_IS === "inside" ? "-mt-8" : ""
+        }`}
       >
         <span className="mt-[-4px] text-4xl">+</span>
       </Link>
