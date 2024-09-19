@@ -28,7 +28,7 @@ async function myFetch(url, config) {
 
     return await response.json();
   } catch (error) {
-    console.log("fetch failed: ", error.message);
+    console.log("fetch failed: ", error);
 
     return {
       code: 1000,
