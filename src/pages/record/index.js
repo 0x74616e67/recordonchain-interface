@@ -36,7 +36,7 @@ export default function Create() {
       router.push({
         pathname: `/record/detail`,
         query: {
-          tx: `conflux${tx.hash}`,
+          tx: `${tx.chain}.${tx.hash}`,
         },
       });
     } else {

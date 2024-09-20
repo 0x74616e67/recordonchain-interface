@@ -1,14 +1,5 @@
 import fetch from "./fetch";
-import { getTxInfo as getConfluxTxInfo } from "./conflux";
-
-const NETWORKS = {
-  conflux: {
-    scan: "https://evmtestnet.confluxscan.net",
-  },
-  ethereum: {
-    scan: "https://etherscan.io",
-  },
-};
+import { getTransactionInfo, getNetwork } from "./blockchain";
 
 export const sleep = async function (timestemp) {
   return new Promise((resolve, reject) => {
@@ -41,11 +32,7 @@ export async function send({ chain, message }) {
 }
 
 export async function getTxInfo(chain, hash) {
-  let tx = {};
-
-  if (chain.toLowerCase() === "conflux") {
-    tx = await getConfluxTxInfo(hash);
-  }
+  const tx = await getTransactionInfo(chain, hash);
 
   const response = {
     code: 0,
@@ -53,6 +40,7 @@ export async function getTxInfo(chain, hash) {
       hash: tx.hash,
       timestamp: tx.timestamp,
       message: tx.data,
+      chain: chain,
     },
     message: "",
   };
@@ -122,9 +110,21 @@ export function formatTimestamp(t) {
 }
 
 export function getTxURL(chain, hash) {
-  return chain && hash ? `${NETWORKS[chain].scan}/tx/${hash}` : "";
+  if (!chain || !hash) {
+    return "";
+  }
+
+  const network = getNetwork(chain);
+  return `${network.scanUrl}/tx/${hash}`;
 }
 
 export function getShareURL(chain, hash) {
-  return `${location.host}/record/detail?tx=${chain}${hash}`;
+  return `${location.host}/record/detail?tx=${chain}.${hash}`;
+}
+
+export function resolveShareURL(url) {
+  let u = new URL(url);
+  let params = new URLSearchParams(u.search);
+  const [chain, hash] = params.get("tx").split(".");
+  return { chain, hash };
 }

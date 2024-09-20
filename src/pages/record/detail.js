@@ -9,9 +9,7 @@ import Spin from "@/components/Spin";
 
 export default function Record() {
   const router = useRouter();
-
   const txStore = useTxStore((state) => ({ tx: state.tx }));
-
   const [showShareCard, setShowShareCard] = useState(false);
   const [tx, setTx] = useState({
     hash: "",
@@ -21,42 +19,14 @@ export default function Record() {
   });
   const [loading, setLoading] = useState(false);
 
-  // const chain = router.query.slug?.[0];
-  // const hash = router.query.slug?.[1];
-
   useEffect(() => {
-    // const params = new URLSearchParams(window.location.search);
-    // const pchain = params.get("chain");
-    // const phash = params.get("hash");
-
-    let txs = [];
-
-    try {
-      let params = new URLSearchParams(/\?.*/.exec(router.asPath)?.[0]);
-      txs = params.getAll("tx");
-    } catch (e) {
-      console.log("decode URL search params error");
-      console.log(e);
-    }
-
-    let tx = txs[0];
-
-    // TODO use conflux for default
-    const chain = tx.startsWith("conflux") ? "conflux" : "";
-    const hash = tx.replace(chain, "");
-
-    // invalid url, redirect to home page
-    // if (!chain || !hash) {
-    //   router.replace("/");
-    //   return;
-    // }
+    // TODO 这个只是单链的，多链的 tx 会是一个数组，需要单独处理
+    const [chain, hash] = router.query?.tx?.split(".") || [];
 
     if (Object.keys(txStore.tx).length) {
       setTx(txStore.tx);
     } else {
       setLoading(true);
-
-      // TODO add timeout check
 
       if (chain && hash) {
         getTxInfo(chain, hash)
