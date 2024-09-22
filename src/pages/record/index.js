@@ -4,11 +4,12 @@ import { send } from "@/utils";
 import { useTxStore } from "@/utils/store";
 import Navbar from "@/components/Navbar";
 import Spin from "@/components/Spin";
+import { useTranslations } from "use-intl";
 
 export default function Create() {
   const txStore = useTxStore((state) => ({ tx: state.tx, add: state.add }));
   const router = useRouter();
-
+  const t = useTranslations("Record");
   const MAX_LENGTH = 200;
 
   const [message, setMessage] = useState("");
@@ -49,9 +50,9 @@ export default function Create() {
 
   return (
     <Spin spinning={loading}>
-      <Navbar title="记录"></Navbar>
+      <Navbar title={t("title")}></Navbar>
       <div>
-        <span className="text-base">输入想记录在区块链上的内容</span>
+        <span className="text-base">{t("label")}</span>
         <div className="flex flex-col align-center relative">
           <textarea
             placeholder=""
@@ -77,7 +78,7 @@ export default function Create() {
         className="bg-blue0 text-white rounded-full flex items-center justify-center leading-none w-12 h-12 float-right"
         onClick={handleSubmit}
       >
-        提交
+        {t("submit")}
       </button>
     </Spin>
   );

@@ -1,8 +1,11 @@
-import { useCallback, useMemo, useState } from "react";
+import { useMemo } from "react";
 import Link from "next/link";
 import Portrait from "@/components/Portrait";
+import { useTranslations } from "use-intl";
 
 export default function Home() {
+  const t = useTranslations("Home");
+
   const portraits = useMemo(() => {
     return [
       {
@@ -28,37 +31,30 @@ export default function Home() {
     ];
   }, []);
 
+  const keys = useMemo(() => ["one", "two", "three", "four"], []);
+
   return (
-    <main className="max-h-full overflow-y-auto relative">
+    <div className="max-h-full overflow-y-auto relative">
       <div className="text-base">
-        {/* <div className="text-xl">欢迎来到区块链记</div> */}
-        <div className="indent-8">
-          在这个快节奏的世界里，我们的情感和记忆常常随着时间的流逝而淡去。但有些瞬间、有些情感却值得被永远铭记和分享。
-        </div>
-        <div className="mt-2 indent-8">
-          无论是对逝者的思念，对暗恋之人的仰慕，还是对求而不得的遗憾，抑或是对生活中小而美的瞬间的欣喜，我们都提供了一个安全且不可更改的记录方式。这些内容将通过区块链技术永久保存，不会因为时间的推移而消失，成为一段历史，甚至千百年后的人们也能看到和感受到您曾经的心境和情感。
-        </div>
-        <div className="mt-2 indent-8">
-          <span>区块链记</span>
-          ，一个依托于区块链技术的平台，让您可以将这些珍贵的想法永久记录下来，并在岁月的长河里流传。
-        </div>
+        <div className="indent-8">{t("introduction.label1")}</div>
+        <div className="mt-2 indent-8">{t("introduction.label2")}</div>
+        <div className="mt-2 indent-8">{t("introduction.label3")}</div>
       </div>
 
       <div className="mt-3">
-        {portraits.map((p) => (
+        {keys.map((p) => (
           <Portrait
-            avatar={p.avatar}
-            name={p.name}
-            identity={p.identity}
-            info={p.info}
-            key={p.name}
+            name={t(`portraits.${p}.name`)}
+            identity={t(`portraits.${p}.identity`)}
+            info={t(`portraits.${p}.info`)}
+            key={t(`portraits.${p}.name`)}
           ></Portrait>
         ))}
       </div>
 
       <div
         className={`text-xs font-light ${
-          process.env.SERVER_IS === "inside" ? "" : "hidden"
+          process.env.NEXT_PUBLIC_SERVER_IS === "inside" ? "" : "hidden"
         }`}
       >
         <a
@@ -75,11 +71,11 @@ export default function Home() {
       <Link
         href="/record"
         className={`bg-blue0 text-white inline-block w-12 h-12 rounded-full flex items-center justify-center leading-none sticky bottom-0 left-full ${
-          process.env.SERVER_IS === "inside" ? "-mt-8" : ""
+          process.env.NEXT_PUBLIC_SERVER_IS === "inside" ? "-mt-8" : ""
         }`}
       >
         <span className="mt-[-4px] text-4xl">+</span>
       </Link>
-    </main>
+    </div>
   );
 }

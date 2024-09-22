@@ -6,6 +6,7 @@ import { formatTimestamp, getTxURL } from "@/utils";
 import Card from "@/components/Card";
 import Navbar from "@/components/Navbar";
 import Spin from "@/components/Spin";
+import { useTranslations } from "use-intl";
 
 export default function Record() {
   const router = useRouter();
@@ -18,6 +19,7 @@ export default function Record() {
     chain: "",
   });
   const [loading, setLoading] = useState(false);
+  const t = useTranslations("Detail");
 
   useEffect(() => {
     // TODO 这个只是单链的，多链的 tx 会是一个数组，需要单独处理
@@ -53,20 +55,22 @@ export default function Record() {
 
   return (
     <Spin spinning={loading}>
-      <Navbar title="详情"></Navbar>
+      <Navbar title={t("title")}></Navbar>
       <div>
         <div className="">
           <div>
-            区块链上记录的内容（
-            <a
-              className="text-blue0 hover:text-blue0-700 visited:text-blue0-600"
-              href={getTxURL(tx.chain, tx.hash)}
-              target="_blank"
-              data-html2canvas-ignore
-            >
-              详情
-            </a>
-            ）：
+            {t.rich("link", {
+              scan: (chunks) => (
+                <a
+                  className="text-blue0 hover:text-blue0-700 visited:text-blue0-600"
+                  href={getTxURL(tx.chain, tx.hash)}
+                  target="_blank"
+                  data-html2canvas-ignore
+                >
+                  {chunks}
+                </a>
+              ),
+            })}
           </div>
           <div className="bg-gray0/20 p-4 my-4 rounded">
             <div>{tx.message}</div>
@@ -79,7 +83,7 @@ export default function Record() {
               className="bg-blue0 text-white rounded-full flex items-center justify-center leading-none w-12 h-12 float-right"
               onClick={() => setShowShareCard(!showShareCard)}
             >
-              分享
+              {t("share")}
             </button>
           </div>
         </div>

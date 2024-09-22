@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import Image from "next/image";
 
 const PortraitComponent = memo(function PortraitComponent({
-  avatar = "",
+  // avatar = "",
   name = "",
   identity = "",
   info = "",
