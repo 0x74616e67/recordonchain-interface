@@ -1,8 +1,7 @@
 import { useRouter } from "next/router";
-import { useCallback, useEffect, useLayoutEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useTxStore } from "@/utils/store";
-import { getTxInfo } from "@/utils";
-import { formatTimestamp, getTxURL } from "@/utils";
+import { formatTimestamp, getTxURL, getTxInfo } from "@/utils";
 import Card from "@/components/Card";
 import Navbar from "@/components/Navbar";
 import Spin from "@/components/Spin";
@@ -19,45 +18,63 @@ export default function Record() {
     chain: "",
   });
   const [loading, setLoading] = useState(false);
+  const [errorKey, setErrorKey] = useState("");
   const t = useTranslations("Detail");
 
-  useEffect(() => {
-    // TODO 这个只是单链的，多链的 tx 会是一个数组，需要单独处理
+  const getInfo = useCallback(async () => {
     const [chain, hash] = router.query?.tx?.split(".") || [];
+    setErrorKey("");
 
-    if (Object.keys(txStore.tx).length) {
-      setTx(txStore.tx);
-    } else {
-      setLoading(true);
+    return getTxInfo(chain, hash)
+      .then((resp) => {
+        if (resp.code === 0) {
+          setTx(resp.data);
+        } else {
+          setErrorKey("getTxInfo");
+        }
+      })
+      .catch((e) => {
+        setErrorKey("getTxInfo");
+      });
+  }, [router.query]);
 
-      if (chain && hash) {
-        getTxInfo(chain, hash)
-          .then((resp) => {
-            setTx({
-              chain: chain,
-              ...resp.data,
-            });
+  useEffect(() => {
+    async function main() {
+      if (Object.keys(txStore.tx).length) {
+        setTx(txStore.tx);
+      } else {
+        setLoading(true);
 
-            setLoading(false);
-          })
-          .catch((e) => {
-            console.log("getTxInfo: ", e);
+        // TODO 这个只是单链的，多链的 tx 会是一个数组，需要单独处理
+        const [chain, hash] = router.query?.tx?.split(".") || [];
 
-            setLoading(false);
-
-            // TODO show error tips
-          });
+        if (chain && hash) {
+          await getInfo();
+          setLoading(false);
+        } else {
+          setErrorKey("link");
+          setLoading(false);
+        }
       }
     }
+    main();
   }, [txStore.tx, router.query, router.asPath]);
 
   const handleClose = useCallback(() => setShowShareCard(false), []);
+
+  const handleShare = useCallback(() => {
+    if (errorKey !== "") {
+      return;
+    }
+
+    setShowShareCard(!showShareCard);
+  }, [errorKey, showShareCard]);
 
   return (
     <Spin spinning={loading}>
       <Navbar title={t("title")}></Navbar>
       <div>
-        <div className="">
+        <div>
           <div>
             {t.rich("link", {
               scan: (chunks) => (
@@ -65,27 +82,47 @@ export default function Record() {
                   className="text-blue0 hover:text-blue0-700 visited:text-blue0-600"
                   href={getTxURL(tx.chain, tx.hash)}
                   target="_blank"
-                  data-html2canvas-ignore
                 >
                   {chunks}
                 </a>
               ),
             })}
           </div>
-          <div className="bg-gray0/20 p-4 my-4 rounded">
-            <div>{tx.message}</div>
+          <div className="bg-gray0/20 p-4 my-2 rounded">
+            {tx.message ? (
+              <div>{tx.message}</div>
+            ) : (
+              <div className="text-gray0">{t("noContent")}</div>
+            )}
             <div className="text-right mt-4">
-              {formatTimestamp(tx.timestamp)}
+              {tx.timestamp ? formatTimestamp(tx.timestamp) : ""}
             </div>
           </div>
-          <div>
-            <button
-              className="bg-blue0 text-white rounded-full flex items-center justify-center leading-none w-12 h-12 float-right"
-              onClick={() => setShowShareCard(!showShareCard)}
-            >
-              {t("share")}
-            </button>
-          </div>
+          {errorKey !== "" && (
+            <div className="text-sm text-red-600">
+              {t.rich(`error.${errorKey}`, {
+                button: (chunks) => (
+                  <button
+                    className="text-red-600 hover:text-red-700 visited:text-red-500 underline"
+                    onClick={() => getInfo()}
+                  >
+                    {chunks}
+                  </button>
+                ),
+              })}
+            </div>
+          )}
+
+          <button
+            className={`bg-blue0 text-white rounded-full flex items-center justify-center leading-none px-4 h-12 float-right ${
+              errorKey !== "" || !tx.message
+                ? "opacity-50 cursor-not-allowed"
+                : ""
+            }`}
+            onClick={handleShare}
+          >
+            {t("share")}
+          </button>
         </div>
       </div>
       {showShareCard && !!Object.keys(tx).length && (

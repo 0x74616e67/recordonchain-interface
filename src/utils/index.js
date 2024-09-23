@@ -1,6 +1,8 @@
 import fetch from "./fetch";
 import { getTransactionInfo, getNetwork } from "./blockchain";
 
+export const MAX_CHARACTER_LENGTH = 200;
+
 export const sleep = async function (timestemp) {
   return new Promise((resolve, reject) => {
     setTimeout(() => resolve(), timestemp);
@@ -18,38 +20,49 @@ export async function send({ chain, message }) {
     });
 
     if (response.code === 0) {
-      // return tx hash to UI
       return response.data;
     } else {
       throw new Error(response.message);
     }
   } catch (error) {
-    // @TODO add error handler
-    alert(error.message);
-
+    // TODO emit
+    // 可以把错误消息发给监控系统，以备后续查看
+    console.log(error);
     return null;
   }
 }
 
 export async function getTxInfo(chain, hash) {
-  const tx = await getTransactionInfo(chain, hash);
+  try {
+    const tx = await getTransactionInfo(chain, hash);
 
-  const response = {
-    code: 0,
-    data: {
-      hash: tx.hash,
-      timestamp: tx.timestamp,
-      message: tx.data,
-      chain: chain,
-    },
-    message: "",
-  };
-
-  return response;
+    return {
+      code: 0,
+      data: {
+        hash: tx.hash,
+        timestamp: tx.timestamp,
+        message: tx.data,
+        chain: chain,
+      },
+      message: "",
+    };
+  } catch (e) {
+    // TODO emit
+    console.log("get transaction info error: ", e);
+    return {
+      code: 3,
+      data: {
+        hash: "",
+        timestamp: 0,
+        message: "",
+        chain: "",
+      },
+      message: e.message,
+    };
+  }
 }
 
 // // TODO for test
-// const BACKEND_ENDPOINT = "http://localhost:3001/record";
 // export async function send({ chain, message }) {
 //   try {
 //     const response = {
@@ -63,7 +76,7 @@ export async function getTxInfo(chain, hash) {
 //       message: "",
 //     };
 
-//     await sleep(1000);
+//     await sleep(500);
 
 //     if (response.code === 0) {
 //       // return tx hash to UI
@@ -78,8 +91,9 @@ export async function getTxInfo(chain, hash) {
 // }
 
 // export async function getTxInfo(chain, hash) {
-//   await sleep(1000);
+//   await sleep(500);
 
+//   // success
 //   const response = {
 //     code: 0,
 //     data: {
@@ -90,6 +104,13 @@ export async function getTxInfo(chain, hash) {
 //     },
 //     message: "",
 //   };
+
+//   // error
+//   // const response = {
+//   //   code: 3,
+//   //   data: {},
+//   //   message: "error message",
+//   // };
 
 //   return response;
 // }

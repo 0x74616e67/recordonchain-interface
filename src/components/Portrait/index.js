@@ -1,9 +1,8 @@
-import React, { useEffect, useRef, memo, useCallback } from "react";
-import { useRouter } from "next/router";
+import React, { memo } from "react";
 import Image from "next/image";
 
 const PortraitComponent = memo(function PortraitComponent({
-  // avatar = "",
+  avatar = "",
   name = "",
   identity = "",
   info = "",
@@ -11,20 +10,20 @@ const PortraitComponent = memo(function PortraitComponent({
   return (
     <div className="mb-4 text-base border-[#E2E8F0] border-[1px] p-3 mt-3 rounded">
       <div className="flex">
-        {/* <Image
+        <Image
           src={avatar}
-          width={40}
-          height={40}
+          width={42}
+          height={42}
           style={{
-            width: "40px",
-            height: "40px",
-            borderRadius: "40px",
+            width: "42px",
+            height: "42px",
+            borderRadius: "4px",
           }}
           alt="avatar"
-        ></Image> */}
-        <div className="flex flex-row">
+        ></Image>
+        <div className="flex flex-col ml-2">
           <span className="font-bold">{name}</span>
-          <span className="ml-2 text-gray0">{identity}</span>
+          <span className="text-gray0 text-sm">{identity}</span>
         </div>
       </div>
       <div className="mt-2">{info}</div>

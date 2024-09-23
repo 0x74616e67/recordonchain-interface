@@ -18,18 +18,14 @@ const NETWORKS = {
 const CHAINS = Object.keys(NETWORKS);
 
 export function getNetwork(chain) {
-  try {
-    if (!CHAINS.includes(chain)) {
-      throw new Error(`chain ${chain} not supported`);
-    }
-
-    const network = NETWORKS[chain];
-    network.provider = new ethers.providers.JsonRpcProvider(network.rpcUrl);
-
-    return network;
-  } catch (e) {
-    throw e;
+  if (!CHAINS.includes(chain)) {
+    throw new Error(`chain ${chain} not supported`);
   }
+
+  const network = NETWORKS[chain];
+  network.provider = new ethers.providers.JsonRpcProvider(network.rpcUrl);
+
+  return network;
 }
 
 export async function getTransactionInfo(chain, hash) {

@@ -1,10 +1,11 @@
-import "@/styles/globals.css";
+import { useEffect } from "react";
 import { IntlProvider } from "use-intl";
+import { useLocaleStore } from "@/utils/store";
+import Layout from "@/components/Layout";
+import "@/styles/globals.css";
+
 import en from "@/locales/en";
 import zh from "@/locales/zh";
-import { useLocaleStore } from "@/utils/store";
-import { useEffect } from "react";
-import Layout from "@/components/Layout";
 
 const messages = {
   en,

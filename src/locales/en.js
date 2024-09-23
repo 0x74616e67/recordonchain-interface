@@ -16,21 +16,25 @@ export default {
         name: "Xiao Hong",
         identity: "Student",
         info: "Xiao Hong had a secret crush on a classmate during her college years, but she never had the courage to confess. After graduation, she recorded her feelings and unspoken love for him on **RecordOnChain**. Years later, perhaps a stranger reads these records and is moved by Xiao Hong's deep affection for him. Although they never got together, the memory of this emotion is preserved forever through blockchain technology, becoming a bright spot in his youth.",
+        avatar: "/luffy.jpg",
       },
       two: {
         name: "Zhang",
         identity: "AI Programmer",
         info: "Zhang had a dream when he was young - to travel around the world. As he grew older, this dream became more and more distant. But he recorded his persistence and regret for this dream on **RecordOnChain**. Perhaps his descendants will not see these records, but a future person reading these words may be moved by this regret and inspired to pursue their dreams. ",
+        avatar: "/luffy.jpg",
       },
       three: {
         name: "Li Aunty",
         identity: "Retired Employee of a State-Owned Enterprise",
         info: "Li Aunty lost her husband five years ago. Each year, she writes her memories of her husband. Through **RecordOnChain**, she recorded a series of memories with her husband. These words are not only her remembrance of her husband but also her treasure of that time. She knows that these records will always exist, even if her family may not see them, these emotions and memories will become a history at some point in the future.",
+        avatar: "/luffy.jpg",
       },
       four: {
         name: "Wang",
         identity: "Freelancer",
         info: "Wang is a person who likes to record the beautiful moments in life. Whenever she sees a blooming flower, a beautiful sunset, or a happy gathering with friends, she will record them on **RecordOnChain**. These records not only make her feel warm when she recalls them but also allow future readers to feel the beauty of life through these words. Even if time flows, these small joys can be preserved forever, becoming a highlight in her life.",
+        avatar: "/luffy.jpg",
       },
     },
   },
@@ -38,10 +42,19 @@ export default {
     title: "Record",
     label: "Input the content you want to record on the blockchain",
     submit: "Submit",
+    error: {
+      empty: "Content cannot be empty",
+      send: "Send failed, please try again",
+    },
   },
   Detail: {
     title: "Record Detail",
     share: "Share",
     link: "The content recorded on the blockchain ( <scan>Detail</scan> ) :",
+    noContent: "No content",
+    error: {
+      link: "Invalid link, unable to get blockchain content",
+      getTxInfo: "Failed to get record, please <button>try again</button>",
+    },
   },
 };
