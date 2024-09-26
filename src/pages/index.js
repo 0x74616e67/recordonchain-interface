@@ -32,10 +32,23 @@ export default function Home() {
           process.env.NEXT_PUBLIC_SERVER_IS === "inside" ? "" : "hidden"
         }`}
       >
+        <img
+          className="w-4 h-4 inline-block -mt-1"
+          src="/beian.png"
+          alt="beian"
+        ></img>
+        <a
+          className="text-blue-500 ml-1"
+          href="https://beian.mps.gov.cn/#/query/webSearch?code=61019002003057"
+          rel="noreferrer"
+          target="_blank"
+        >
+          陕公网安备61019002003057
+        </a>
         <a
           href="https://beian.miit.gov.cn"
           target="_blank"
-          className="text-blue-500"
+          className="text-blue-500 ml-2"
         >
           陕ICP备2024048059号-1
         </a>
