@@ -1,8 +1,13 @@
 export default {
-  Layout: {
+  Meta: {
     title: "区块链记",
+    description:
+      "区块链记，一个依托于区块链技术的平台，让您可以将珍贵的想法永久记录下来。",
   },
   Home: {
+    meta: {
+      title: "区块链记",
+    },
     introduction: {
       label1:
         "在这个快节奏的世界里，我们的情感和记忆常常随着时间的流逝而淡去。但有些瞬间、有些情感却值得被永远铭记和分享。",
@@ -39,6 +44,9 @@ export default {
     },
   },
   Record: {
+    meta: {
+      title: "记录 - 区块链记",
+    },
     title: "记录",
     label: "输入想记录在区块链上的内容",
     submit: "提交",
@@ -48,7 +56,9 @@ export default {
     },
   },
   Detail: {
-    title: "记录详情",
+    meta: {
+      title: "记录详情 - 区块链记",
+    },
     share: "分享",
     link: "区块链上记录的内容（<scan>详情</scan>）：",
     noContent: "暂无内容",

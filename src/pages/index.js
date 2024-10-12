@@ -2,6 +2,7 @@ import { useMemo } from "react";
 import Link from "next/link";
 import Portrait from "@/components/Portrait";
 import { useTranslations } from "use-intl";
+import Head from "next/head";
 
 export default function Home() {
   const t = useTranslations("Home");
@@ -9,6 +10,9 @@ export default function Home() {
 
   return (
     <div className="max-h-full overflow-y-auto relative">
+      <Head>
+        <title>{t("meta.title")}</title>
+      </Head>
       <div className="text-base">
         <div className="indent-8">{t("introduction.label1")}</div>
         <div className="mt-2 indent-8">{t("introduction.label2")}</div>

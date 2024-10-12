@@ -3,7 +3,7 @@ import { memo } from "react";
 import { useTranslations } from "use-intl";
 
 function Layout({ children }) {
-  const t = useTranslations("Layout");
+  const t = useTranslations("Meta");
   const localeStore = useLocaleStore((state) => ({
     locale: state.locale,
     setLocale: state.setLocale,
@@ -11,11 +11,11 @@ function Layout({ children }) {
 
   return (
     <>
-      <h1 className="text-2xl h-16 bg-[#F8FAFC] flex items-center justify-between px-4 text-[#1E293B]">
-        {t("title")}
+      <div className="text-2xl h-16 bg-[#F8FAFC] flex items-center justify-between px-4 text-[#1E293B]">
+        <h1>{t("title")}</h1>
         <div>
           <small
-            className={`text-sm ${
+            className={`text-sm cursor-pointer ${
               localeStore.locale === "en" ? "text-blue0" : ""
             }`}
             onClick={() => localeStore.setLocale("en")}
@@ -23,7 +23,7 @@ function Layout({ children }) {
             English
           </small>
           <small
-            className={`text-sm ml-2 ${
+            className={`text-sm ml-2 cursor-pointer ${
               localeStore.locale === "zh" ? "text-blue0" : ""
             }`}
             onClick={() => localeStore.setLocale("zh")}
@@ -31,7 +31,7 @@ function Layout({ children }) {
             中文
           </small>
         </div>
-      </h1>
+      </div>
       <main className="p-4 relative h-[calc(100%-64px)]">{children}</main>
     </>
   );

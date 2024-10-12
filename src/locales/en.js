@@ -1,8 +1,13 @@
 export default {
-  Layout: {
+  Meta: {
     title: "Qu Kuai Lian Ji",
+    description:
+      "Qu Kuai Lian Ji, a platform based on blockchain technology, allows you to record your precious thoughts permanently.",
   },
   Home: {
+    meta: {
+      title: "Qu Kuai Lian Ji",
+    },
     introduction: {
       label1:
         "In the fast-paced world, our emotions and memories often fade with time. But some moments and emotions are worth being cherished and shared forever.",
@@ -39,6 +44,9 @@ export default {
     },
   },
   Record: {
+    meta: {
+      title: "Record - Qu Kuai Lian Ji",
+    },
     title: "Record",
     label: "Input the content you want to record on the blockchain",
     submit: "Submit",
@@ -48,6 +56,9 @@ export default {
     },
   },
   Detail: {
+    meta: {
+      title: "Record Detail - Qu Kuai Lian Ji",
+    },
     title: "Record Detail",
     share: "Share",
     link: "The content recorded on the blockchain ( <scan>Detail</scan> ) :",
