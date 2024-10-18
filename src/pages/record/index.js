@@ -15,41 +15,60 @@ export default function Create() {
   const [message, setMessage] = useState("");
   const [errorKey, setErrorKey] = useState("");
 
+  const [code, setCode] = useState("");
+  const [errorCodeKey, setErrorCodeKey] = useState("");
+
   // TODO user can select network
   const [chain, setChain] = useState("conflux");
   const [loading, setLoading] = useState(false);
 
-  const handleChange = useCallback((e) => {
+  const handleRecordChange = useCallback((e) => {
     setMessage(e.target.value);
     setErrorKey("");
   }, []);
 
+  const handleCodeChange = useCallback((e) => {
+    setCode(e.target.value);
+    setErrorCodeKey("");
+  }, []);
+
   const handleSubmit = async () => {
-    if (errorKey !== "") {
-      return;
+    const messageIsEmpty = message.trim() === "";
+    const codeIsEmpty = code.trim() === "";
+
+    if (messageIsEmpty) {
+      setErrorKey("empty");
     }
 
-    if (message.trim() === "") {
-      setErrorKey("empty");
+    if (codeIsEmpty) {
+      setErrorCodeKey("empty");
+    }
+
+    if (messageIsEmpty || codeIsEmpty) {
       return;
     }
 
     setLoading(true);
 
     try {
-      const tx = await send({ chain, message });
+      const resp = await send({ chain, message, code });
 
-      if (tx) {
-        txStore.add(tx);
+      if (resp.code === 0) {
+        txStore.add(resp.data);
 
         router.push({
           pathname: `/record/detail`,
           query: {
-            tx: `${tx.chain}.${tx.hash}`,
+            tx: `${resp.data.chain}.${resp.data.hash}`,
           },
         });
       } else {
-        setErrorKey("send");
+        // invalid code
+        if (resp.code === 1003) {
+          setErrorCodeKey("invalid");
+        } else if (resp.code === 1002) {
+          setErrorCodeKey("database");
+        }
       }
 
       setLoading(false);
@@ -60,6 +79,9 @@ export default function Create() {
     }
   };
 
+  // there is record content error or code error
+  const hasError = errorKey || errorCodeKey;
+
   return (
     <>
       <Head>
@@ -67,16 +89,18 @@ export default function Create() {
       </Head>
       <Spin spinning={loading}>
         <Navbar title={t("title")}></Navbar>
+
+        {/* record textare */}
         <div>
-          <span className="text-base">{t("label")}</span>
+          <span className="text-base">{t("record.label")}</span>
           <div className="flex flex-col align-center relative">
             <textarea
               placeholder=""
-              className="my-2 p-2 border-2 border-solid border-gray0 rounded focus:border-blue0 focus:outline-none resize-none"
+              className="mt-2 mb-1 p-2 border-2 border-solid border-gray0 rounded focus:border-blue0 focus:outline-none resize-none"
               rows={6}
               autoFocus
               resize="none"
-              onChange={handleChange}
+              onChange={handleRecordChange}
               value={message}
               maxLength={MAX_CHARACTER_LENGTH}
             ></textarea>
@@ -90,14 +114,34 @@ export default function Create() {
               {message.length}/{MAX_CHARACTER_LENGTH}
             </span>
           </div>
-          {errorKey !== "" && (
-            <div className="text-sm text-red-600">{t(`error.${errorKey}`)}</div>
+          {errorKey && (
+            <div className="text-sm text-red-600">
+              {t(`record.error.${errorKey}`)}
+            </div>
+          )}
+        </div>
+
+        {/* code input */}
+        <div className="mt-2">
+          <span className="text-base">{t("code.label")}</span>
+          <div className="flex flex-col align-center relative">
+            <input
+              placeholder=""
+              className="mt-2 mb-1 p-2 border-2 border-solid border-gray0 rounded focus:border-blue0 focus:outline-none resize-none w-1/2"
+              onChange={handleCodeChange}
+              value={code}
+            ></input>
+          </div>
+          {errorCodeKey && (
+            <div className="text-sm text-red-600">
+              {t(`code.error.${errorCodeKey}`)}
+            </div>
           )}
         </div>
 
         <button
           className={`bg-blue0 text-white rounded-full flex items-center justify-center leading-none h-12 float-right px-4 mt-2 ${
-            errorKey !== "" ? "opacity-50 cursor-not-allowed" : ""
+            hasError ? "opacity-50 cursor-not-allowed" : ""
           }`}
           onClick={handleSubmit}
         >

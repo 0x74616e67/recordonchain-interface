@@ -1,6 +1,6 @@
 export default {
   Meta: {
-    title: "区块链记",
+    title: "区块链记（Beta）",
     description:
       "区块链记，一个依托于区块链技术的平台，让您可以将珍贵的想法永久记录下来。",
   },
@@ -48,17 +48,29 @@ export default {
       title: "记录 - 区块链记",
     },
     title: "记录",
-    label: "输入想记录在区块链上的内容",
-    submit: "提交",
-    error: {
-      empty: "内容不能为空",
-      send: "发送失败，请重试",
+    record: {
+      label: "输入想记录在区块链上的内容",
+      error: {
+        empty: "内容不能为空",
+        send: "记录失败，请重试",
+      },
     },
+    code: {
+      label: "输入验证码",
+      error: {
+        empty: "验证码不能为空",
+        invalid: "验证码不存在或已经使用过",
+        database: "验证码校验失败，请重试",
+      },
+    },
+    submit: "提交",
+    error: {},
   },
   Detail: {
     meta: {
       title: "记录详情 - 区块链记",
     },
+    title: "记录详情",
     share: "分享",
     link: "区块链上记录的内容（<scan>详情</scan>）：",
     noContent: "暂无内容",

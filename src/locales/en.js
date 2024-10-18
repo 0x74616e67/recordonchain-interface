@@ -1,6 +1,6 @@
 export default {
   Meta: {
-    title: "Qu Kuai Lian Ji",
+    title: "Qu Kuai Lian Ji (Beta)",
     description:
       "Qu Kuai Lian Ji, a platform based on blockchain technology, allows you to record your precious thoughts permanently.",
   },
@@ -48,12 +48,24 @@ export default {
       title: "Record - Qu Kuai Lian Ji",
     },
     title: "Record",
-    label: "Input the content you want to record on the blockchain",
-    submit: "Submit",
-    error: {
-      empty: "Content cannot be empty",
-      send: "Send failed, please try again",
+
+    record: {
+      label: "Enter the content you want to record on the blockchain",
+      error: {
+        empty: "Content cannot be empty",
+        send: "Record failed, please try again",
+      },
     },
+    code: {
+      label: "Enter confirmation code",
+      error: {
+        empty: "Verification code cannot be empty",
+        invalid: "Verification code is invalid or is verified",
+        database: "Verification code verification failed",
+      },
+    },
+    submit: "Submit",
+    error: {},
   },
   Detail: {
     meta: {

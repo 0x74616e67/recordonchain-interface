@@ -10,20 +10,17 @@ export const sleep = async function (timestemp) {
 };
 
 // // TODO product code
-export async function send({ chain, message }) {
+export async function send({ chain, message, code }) {
   const url = getBackendURL("/record");
 
   try {
     const response = await fetch(url, {
       method: "POST",
-      body: { chain, message },
+      body: { chain, message, code },
     });
 
-    if (response.code === 0) {
-      return response.data;
-    } else {
-      throw new Error(response.message);
-    }
+    // 这里返回整个 response 是为了通过 code 值在 UI 端显示具体的错误信息
+    return response;
   } catch (error) {
     // TODO emit
     // 可以把错误消息发给监控系统，以备后续查看
