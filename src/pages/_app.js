@@ -1,3 +1,4 @@
+import Head from "next/head";
 import { useEffect } from "react";
 import { IntlProvider } from "use-intl";
 import { useLocaleStore } from "@/utils/store";
@@ -34,6 +35,22 @@ export default function App({ Component, pageProps }) {
       locale={localeStore.locale}
     >
       <Layout>
+        <Head>
+          <title>{process.env.NEXT_PUBLIC_META_TITLE}</title>
+          <meta charSet="UTF-8" />
+          <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+          />
+          <meta
+            name="description"
+            content={process.env.NEXT_PUBLIC_META_DESCRIPTION}
+          />
+          <meta
+            name="keywords"
+            content={process.env.NEXT_PUBLIC_META_KEYWORDS}
+          ></meta>
+        </Head>
         <Component {...pageProps} />
         {process.env.NEXT_PUBLIC_ANALYSIS === "true" ? (
           <Script id="baiduanalysis">
