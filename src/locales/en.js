@@ -48,13 +48,18 @@ export default {
       title: "Record - Qu Kuai Lian Ji",
     },
     title: "Record",
-
     record: {
       label: "Enter the content you want to record on the blockchain",
       error: {
         empty: "Content cannot be empty",
         send: "Record failed, please try again",
       },
+    },
+    chain: {
+      label: "Select a recording platform",
+      conflux: "Chinese platform",
+      ethereum: "International platform",
+      freetrail: "Trial platform - for experience only",
     },
     code: {
       label: "Enter confirmation code",

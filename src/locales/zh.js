@@ -55,6 +55,12 @@ export default {
         send: "记录失败，请重试",
       },
     },
+    chain: {
+      label: "选择记录平台",
+      conflux: "国内平台",
+      ethereum: "国际平台",
+      freetrail: "试用平台 - 仅供体验",
+    },
     code: {
       label: "输入验证码",
       error: {

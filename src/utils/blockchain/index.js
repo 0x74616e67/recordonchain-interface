@@ -13,6 +13,12 @@ const NETWORKS = {
     to: process.env.NEXT_PUBLIC_ETHEREUM_TO,
     scanUrl: process.env.NEXT_PUBLIC_ETHEREUM_SCAN_URL,
   },
+  // free trail network
+  confluxevmtestnet: {
+    rpcUrl: process.env.NEXT_PUBLIC_CONFLUX_RPC_URL,
+    to: process.env.NEXT_PUBLIC_CONFLUX_TO,
+    scanUrl: process.env.NEXT_PUBLIC_CONFLUX_SCAN_URL,
+  },
 };
 
 const CHAINS = Object.keys(NETWORKS);
@@ -42,4 +48,8 @@ export async function getTransactionInfo(chain, hash) {
     data: fData,
     timestamp,
   };
+}
+
+export function isFreeTrailChain(chain) {
+  return chain === "confluxevmtestnet";
 }

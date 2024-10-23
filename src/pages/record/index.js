@@ -1,6 +1,7 @@
 import { useRouter } from "next/router";
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import { send, MAX_CHARACTER_LENGTH } from "@/utils";
+import { isFreeTrailChain } from "@/utils/blockchain";
 import { useTxStore } from "@/utils/store";
 import Navbar from "@/components/Navbar";
 import Spin from "@/components/Spin";
@@ -18,13 +19,26 @@ export default function Create() {
   const [code, setCode] = useState("");
   const [errorCodeKey, setErrorCodeKey] = useState("");
 
-  // TODO user can select network
-  const [chain, setChain] = useState("conflux");
+  const [chain, setChain] = useState("confluxevmtestnet");
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    if (isFreeTrailChain(chain)) {
+      setCode("00000000");
+    } else {
+      setCode("");
+    }
+  }, [chain]);
 
   const handleRecordChange = useCallback((e) => {
     setMessage(e.target.value);
     setErrorKey("");
+  }, []);
+
+  const handleChainChange = useCallback((e) => {
+    setChain(e.target.value);
+    setErrorKey("");
+    setErrorCodeKey("");
   }, []);
 
   const handleCodeChange = useCallback((e) => {
@@ -68,6 +82,8 @@ export default function Create() {
           setErrorCodeKey("invalid");
         } else if (resp.code === 1002) {
           setErrorCodeKey("database");
+        } else {
+          setErrorKey("send");
         }
       }
 
@@ -90,63 +106,111 @@ export default function Create() {
       <Spin spinning={loading}>
         <Navbar title={t("title")}></Navbar>
 
-        {/* record textare */}
-        <div>
-          <span className="text-base">{t("record.label")}</span>
-          <div className="flex flex-col align-center relative">
-            <textarea
-              placeholder=""
-              className="mt-2 mb-1 p-2 border-2 border-solid border-gray0 rounded focus:border-blue0 focus:outline-none resize-none"
-              rows={6}
-              autoFocus
-              resize="none"
-              onChange={handleRecordChange}
-              value={message}
-              maxLength={MAX_CHARACTER_LENGTH}
-            ></textarea>
-            <span
-              className={`absolute bottom-5 right-2 ${
-                message.length >= MAX_CHARACTER_LENGTH
-                  ? "text-red-500"
-                  : "text-gray0"
-              }`}
+        <div className="grid grid-cols-1 gap-x-4 gap-y-4 sm:grid-cols-1">
+          {/* record textare */}
+          <div className="sm:col-span-4">
+            <label
+              htmlFor="record"
+              className="text-base"
+              // className="block text-sm font-medium leading-6 text-gray-900"
             >
-              {message.length}/{MAX_CHARACTER_LENGTH}
-            </span>
-          </div>
-          {errorKey && (
-            <div className="text-sm text-red-600">
-              {t(`record.error.${errorKey}`)}
+              {t("record.label")}
+            </label>
+            <div className="mt-2 relative">
+              <textarea
+                id="record"
+                name="record"
+                autoComplete="record-name"
+                rows={6}
+                placeholder=""
+                className="
+                block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 
+                placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6
+                 resize-none
+              "
+                resize="none"
+                onChange={handleRecordChange}
+                value={message}
+                maxLength={MAX_CHARACTER_LENGTH}
+              />
+              <span
+                className={`absolute bottom-2 right-2 ${
+                  message.length >= MAX_CHARACTER_LENGTH
+                    ? "text-red-500"
+                    : "text-gray0"
+                }`}
+              >
+                {message.length}/{MAX_CHARACTER_LENGTH}
+              </span>
             </div>
-          )}
-        </div>
-
-        {/* code input */}
-        <div className="mt-2">
-          <span className="text-base">{t("code.label")}</span>
-          <div className="flex flex-col align-center relative">
-            <input
-              placeholder=""
-              className="mt-2 mb-1 p-2 border-2 border-solid border-gray0 rounded focus:border-blue0 focus:outline-none resize-none w-1/2"
-              onChange={handleCodeChange}
-              value={code}
-            ></input>
+            {errorKey && (
+              <div className="text-sm text-red-600">
+                {t(`record.error.${errorKey}`)}
+              </div>
+            )}
           </div>
-          {errorCodeKey && (
-            <div className="text-sm text-red-600">
-              {t(`code.error.${errorCodeKey}`)}
-            </div>
-          )}
-        </div>
 
-        <button
-          className={`bg-blue0 text-white rounded-full flex items-center justify-center leading-none h-12 float-right px-4 mt-2 ${
-            hasError ? "opacity-50 cursor-not-allowed" : ""
-          }`}
-          onClick={handleSubmit}
-        >
-          {t("submit")}
-        </button>
+          {/* free trail */}
+          <div className="sm:col-span-4">
+            <label htmlFor="chain" className="text-base">
+              {t("chain.label")}
+            </label>
+            <div className="mt-2">
+              <select
+                id="chain"
+                name="chain"
+                autoComplete="chain-name"
+                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6"
+                onChange={handleChainChange}
+                value={chain}
+              >
+                <option value="conflux">{t("chain.conflux")}</option>
+                <option value="ethereum">{t("chain.ethereum")}</option>
+                <option value="confluxevmtestnet">
+                  {t("chain.freetrail")}
+                </option>
+              </select>
+            </div>
+          </div>
+
+          {/* code input */}
+          <div
+            className={`sm:col-span-4 ${
+              isFreeTrailChain(chain) ? "hidden" : ""
+            }`}
+          >
+            <label htmlFor="code" className="text-base">
+              {t("code.label")}
+            </label>
+            <div className="mt-2">
+              <input
+                id="code"
+                name="code"
+                autoComplete="code-name"
+                type="text"
+                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6"
+                onChange={handleCodeChange}
+                value={code}
+              />
+            </div>
+            {errorCodeKey && (
+              <div className="text-sm text-red-600">
+                {t(`code.error.${errorCodeKey}`)}
+              </div>
+            )}
+          </div>
+
+          <div className="sm:col-span-4">
+            <button
+              className={`bg-blue0 text-white rounded-full flex items-center justify-center leading-none h-12 float-right px-4 ${
+                hasError ? "opacity-50 cursor-not-allowed" : ""
+              }`}
+              onClick={handleSubmit}
+            >
+              {t("submit")}
+            </button>
+          </div>
+        </div>
       </Spin>
     </>
   );
