@@ -4,6 +4,12 @@ export default {
     description:
       "区块链记，一个依托于区块链技术的平台，让您可以将珍贵的想法永久记录下来。",
   },
+  Footer: {
+    home: "首页",
+    create: "创建",
+    records: "记录",
+    setting: "设置",
+  },
   Home: {
     meta: {
       title: "区块链记",
@@ -63,6 +69,11 @@ export default {
     },
     code: {
       label: "输入验证码",
+      placeholder: {
+        conflux: "格式如 C12345678",
+        ethereum: "格式如 E12345678",
+        confluxevmtestnet: "",
+      },
       error: {
         empty: "验证码不能为空",
         invalid: "验证码不存在或已经使用过",

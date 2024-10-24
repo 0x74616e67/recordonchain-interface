@@ -4,6 +4,12 @@ export default {
     description:
       "Qu Kuai Lian Ji, a platform based on blockchain technology, allows you to record your precious thoughts permanently.",
   },
+  Footer: {
+    home: "Home",
+    create: "Create",
+    records: "Records",
+    setting: "Setting",
+  },
   Home: {
     meta: {
       title: "Qu Kuai Lian Ji",
@@ -63,6 +69,11 @@ export default {
     },
     code: {
       label: "Enter confirmation code",
+      placeholder: {
+        conflux: "Format such as C12345678",
+        ethereum: "Format such as E12345678",
+        confluxevmtestnet: "",
+      },
       error: {
         empty: "Verification code cannot be empty",
         invalid: "Verification code is invalid or is verified",
