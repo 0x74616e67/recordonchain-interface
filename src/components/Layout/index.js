@@ -1,6 +1,7 @@
 import { useLocaleStore } from "@/utils/store";
 import { memo } from "react";
 import { useTranslations } from "use-intl";
+import Footer from "./Footer";
 
 function Layout({ children }) {
   const t = useTranslations("Meta");
@@ -32,7 +33,8 @@ function Layout({ children }) {
           </small>
         </div>
       </div>
-      <main className="p-4 relative h-[calc(100%-64px)]">{children}</main>
+      <main className="p-4 relative h-[calc(100%-118px)]">{children}</main>
+      <Footer />
     </>
   );
 }
