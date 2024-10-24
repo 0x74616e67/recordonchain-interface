@@ -3,7 +3,6 @@ import { useState, useCallback, useEffect } from "react";
 import { send, MAX_CHARACTER_LENGTH } from "@/utils";
 import { isFreeTrailChain } from "@/utils/blockchain";
 import { useTxStore } from "@/utils/store";
-import Navbar from "@/components/Navbar";
 import Spin from "@/components/Spin";
 import { useTranslations } from "use-intl";
 import Head from "next/head";
@@ -104,8 +103,6 @@ export default function Create() {
         <title>{t("meta.title")}</title>
       </Head>
       <Spin spinning={loading}>
-        <Navbar title={t("title")}></Navbar>
-
         <div className="grid grid-cols-1 gap-x-4 gap-y-4 sm:grid-cols-1">
           {/* record textare */}
           <div className="sm:col-span-4">

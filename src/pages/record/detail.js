@@ -3,7 +3,6 @@ import { useCallback, useEffect, useState } from "react";
 import { useTxStore } from "@/utils/store";
 import { formatTimestamp, getTxURL, getTxInfo } from "@/utils";
 import Card from "@/components/Card";
-import Navbar from "@/components/Navbar";
 import Spin from "@/components/Spin";
 import { useTranslations } from "use-intl";
 import Head from "next/head";
@@ -77,7 +76,6 @@ export default function Record() {
         <title>{t("meta.title")}</title>
       </Head>
       <Spin spinning={loading}>
-        <Navbar title={t("title")}></Navbar>
         <div>
           <div>
             <div>
