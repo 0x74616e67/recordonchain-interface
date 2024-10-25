@@ -96,4 +96,17 @@ export default {
       getTxInfo: "Failed to get record, please <button>try again</button>",
     },
   },
+  Records: {
+    meta: {
+      title: "Record List - Qu Kuai Lian Ji",
+    },
+    title: "Record List",
+  },
+  Setting: {
+    meta: {
+      title: "Setting - Qu Kuai Lian Ji",
+    },
+    title: "Setting",
+    locale: "Language",
+  },
 };

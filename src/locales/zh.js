@@ -96,4 +96,17 @@ export default {
       getTxInfo: "获取记录失败，请<button>重试</button>",
     },
   },
+  Records: {
+    meta: {
+      title: "记录列表 - 区块链记",
+    },
+    title: "记录列表",
+  },
+  Setting: {
+    meta: {
+      title: "设置 - 区块链记",
+    },
+    title: "设置",
+    locale: "语言",
+  },
 };
