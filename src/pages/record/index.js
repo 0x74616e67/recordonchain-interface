@@ -2,13 +2,16 @@ import { useRouter } from "next/router";
 import { useState, useCallback, useEffect } from "react";
 import { send, MAX_CHARACTER_LENGTH } from "@/utils";
 import { isFreeTrailChain } from "@/utils/blockchain";
-import { useTxStore } from "@/utils/store";
+import { useTxStore, useChainStore } from "@/utils/store";
 import Spin from "@/components/Spin";
 import { useTranslations } from "use-intl";
 import Head from "next/head";
 
 export default function Create() {
   const txStore = useTxStore((state) => ({ tx: state.tx, add: state.add }));
+  const chainStore = useChainStore((state) => ({
+    chain: state.chain,
+  }));
   const router = useRouter();
   const t = useTranslations("Record");
 
@@ -18,7 +21,7 @@ export default function Create() {
   const [code, setCode] = useState("");
   const [errorCodeKey, setErrorCodeKey] = useState("");
 
-  const [chain, setChain] = useState("confluxevmtestnet");
+  const [chain, setChain] = useState(chainStore.chain);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {

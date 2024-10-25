@@ -108,5 +108,6 @@ export default {
     },
     title: "设置",
     locale: "语言",
+    chain: "平台",
   },
 };

@@ -1,7 +1,7 @@
 import Head from "next/head";
 import { useEffect } from "react";
 import { IntlProvider } from "use-intl";
-import { useLocaleStore } from "@/utils/store";
+import { useLocaleStore, useChainStore } from "@/utils/store";
 import Layout from "@/components/Layout";
 import "@/styles/globals.css";
 import Script from "next/script";
@@ -20,14 +20,28 @@ export default function App({ Component, pageProps }) {
     setLocale: state.setLocale,
   }));
 
+  const chainStore = useChainStore((state) => ({
+    chain: state.chain,
+    setChain: state.setChain,
+  }));
+
   useEffect(() => {
+    // 加载 localstorage 中的配置
+
     const locale =
       localeStore.locale ||
       localStorage.getItem("locale") ||
       process.env.NEXT_PUBLIC_LOCALE;
 
     localeStore.setLocale(locale);
-  }, [localeStore.locale]);
+
+    const chain =
+      chainStore.chain ||
+      localStorage.getItem("chain") ||
+      process.env.NEXT_PUBLIC_CHAIN;
+
+    chainStore.setChain(chain);
+  }, [localeStore.locale, chainStore.chain]);
 
   return localeStore.locale ? (
     <IntlProvider

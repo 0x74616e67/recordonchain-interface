@@ -16,3 +16,14 @@ export const useLocaleStore = create((set) => ({
     });
   },
 }));
+
+export const useChainStore = create((set) => ({
+  setChain: async (chain) => {
+    localStorage.setItem("chain", chain);
+    document.cookie = `chain=${chain};max-age=Infinity;expires=Fri, 31 Dec 9999 23:59:59 GMT;`;
+
+    set(() => {
+      return { chain };
+    });
+  },
+}));

@@ -108,5 +108,6 @@ export default {
     },
     title: "Setting",
     locale: "Language",
+    chain: "Platform",
   },
 };

@@ -1,11 +1,11 @@
-import { memo, useState } from "react";
+import { memo } from "react";
 import { useTranslations } from "use-intl";
 import Head from "next/head";
 import Locale from "./Locale";
+import Chain from "./Chain";
 
 function Setting({}) {
   const t = useTranslations("Setting");
-  const [loading, setLoading] = useState(false);
 
   return (
     <>
@@ -13,6 +13,7 @@ function Setting({}) {
         <title>{t("meta.title")}</title>
       </Head>
       <Locale></Locale>
+      <Chain></Chain>
     </>
   );
 }
