@@ -4,6 +4,7 @@ import { send, MAX_CHARACTER_LENGTH } from "@/utils";
 import { isFreeTrailChain } from "@/utils/blockchain";
 import { useTxStore, useChainStore } from "@/utils/store";
 import Spin from "@/components/Spin";
+import ChainComponent from "@/components/Chain";
 import { useTranslations } from "use-intl";
 import Head from "next/head";
 
@@ -20,7 +21,6 @@ export default function Create() {
 
   const [code, setCode] = useState("");
   const [errorCodeKey, setErrorCodeKey] = useState("");
-
   const [chain, setChain] = useState(chainStore.chain);
   const [loading, setLoading] = useState(false);
 
@@ -37,8 +37,8 @@ export default function Create() {
     setErrorKey("");
   }, []);
 
-  const handleChainChange = useCallback((e) => {
-    setChain(e.target.value);
+  const handleChainChange = useCallback((option) => {
+    setChain(option.value);
     setErrorKey("");
     setErrorCodeKey("");
   }, []);
@@ -155,22 +155,7 @@ export default function Create() {
             <label htmlFor="chain" className="text-base">
               {t("chain.label")}
             </label>
-            <div className="mt-2">
-              <select
-                id="chain"
-                name="chain"
-                autoComplete="chain-name"
-                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6"
-                onChange={handleChainChange}
-                value={chain}
-              >
-                <option value="conflux">{t("chain.conflux")}</option>
-                <option value="ethereum">{t("chain.ethereum")}</option>
-                <option value="confluxevmtestnet">
-                  {t("chain.freetrail")}
-                </option>
-              </select>
-            </div>
+            <ChainComponent onChange={handleChainChange} value={chain} />
           </div>
 
           {/* code input */}

@@ -9,7 +9,7 @@ export default function Home() {
   const keys = useMemo(() => ["one", "two", "three", "four"], []);
 
   return (
-    <div className="max-h-full overflow-y-auto relative">
+    <>
       <Head>
         <title>{t("meta.title")}</title>
       </Head>
@@ -68,6 +68,6 @@ export default function Home() {
       >
         <span className="mt-[-4px] text-4xl">+</span>
       </Link>
-    </div>
+    </>
   );
 }

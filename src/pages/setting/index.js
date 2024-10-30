@@ -13,6 +13,7 @@ function Setting({}) {
         <title>{t("meta.title")}</title>
       </Head>
       <Locale></Locale>
+      <div className="mt-2"></div>
       <Chain></Chain>
     </>
   );

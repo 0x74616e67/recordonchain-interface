@@ -3,6 +3,8 @@ import { getTransactionInfo, getNetwork } from "./blockchain";
 
 export const MAX_CHARACTER_LENGTH = 200;
 
+export const SCROLL_DISTANCE = 60;
+
 export const sleep = async function (timestemp) {
   return new Promise((resolve, reject) => {
     setTimeout(() => resolve(), timestemp);
@@ -145,4 +147,33 @@ export function resolveShareURL(url) {
   let params = new URLSearchParams(u.search);
   const [chain, hash] = params.get("tx").split(".");
   return { chain, hash };
+}
+
+export async function getRecords({
+  page = 1,
+  pageSize = 10,
+  chain = "conflux",
+  order = "desc",
+}) {
+  const url = getBackendURL("/records");
+
+  try {
+    const response = await fetch(
+      `${url}?page=${page}&pageSize=${pageSize}&chain=${chain}&order=${order}`,
+      {
+        method: "GET",
+      }
+    );
+
+    if (response.code === 0) {
+      return response.data;
+    } else {
+      throw new Error(response.message);
+    }
+  } catch (error) {
+    // TODO emit
+    // 可以把错误消息发给监控系统，以备后续查看
+    console.log(error);
+    return [];
+  }
 }

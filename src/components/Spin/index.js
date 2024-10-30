@@ -7,7 +7,7 @@ const SpinComponent = memo(function SpinComponent({
   children,
 }) {
   return (
-    <div>
+    <>
       <div className={spinning ? "blur-sm" : ""}>{children}</div>
       {spinning ? (
         <div className="fixed top-0 bottom-0 left-0 right-0 flex justify-center items-center">
@@ -33,7 +33,7 @@ const SpinComponent = memo(function SpinComponent({
           </svg>
         </div>
       ) : null}
-    </div>
+    </>
   );
 });
 
