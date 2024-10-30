@@ -1,6 +1,6 @@
 export default {
   Meta: {
-    title: "区块链记（Beta）",
+    title: "区块链记",
     description:
       "区块链记，一个依托于区块链技术的平台，让您可以将珍贵的想法永久记录下来。",
   },
