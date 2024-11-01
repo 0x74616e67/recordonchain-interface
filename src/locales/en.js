@@ -110,4 +110,65 @@ export default {
     locale: "Language",
     chain: "Platform",
   },
+  Terms: {
+    Dialog: {
+      ok: "Agree",
+      cancel: "Cancel",
+      checkbox: "Don't remind me again",
+    },
+    UserAgreement: {
+      title: "User Agreement",
+      content: `1. User Responsibility
+Users bear full responsibility for the content and actions they upload. Once content is recorded on the blockchain, it will be permanently stored and cannot be modified or deleted. Users must ensure that their uploaded content complies with the laws and regulations of the People's Republic of China and does not infringe upon the legitimate rights of others.
+2. Prohibited Conduct
+Users are prohibited from uploading text that contains any of the following:
+∙ Content that violates laws and regulations or social ethics;
+∙ False or misleading information, or content that may cause harm to others;
+∙ Any content related to pornography, gambling, drugs, violence, politics, or religious extremism.
+3. Platform Rights
+This platform reserves the right to monitor the content uploaded by users. Although the platform cannot delete or alter content on the blockchain, we have the right to refuse or prevent users from uploading illegal or non-compliant content. The platform will cooperate with law enforcement agencies in dealing with any illegal content uploaded by users.
+4. Changes and Interruptions to Services
+This platform has the right to adjust or terminate services as needed. If there are any changes to the content or fees of the services, the platform will notify users in advance through announcements. The platform assumes no responsibility for any inability to access or loss of records resulting from service adjustments or interruptions.
+5. Legal Jurisdiction
+This agreement is governed by the laws of the People's Republic of China. Any disputes arising from this agreement shall be submitted to the competent people's court in the location of the platform.
+    `,
+    },
+    PrivacyPolicy: {
+      title: "Privacy Policy",
+      content: `1. Description of Services
+This App provides users with the ability to permanently record textual content on the blockchain. Users can upload textual content to the blockchain by paying a fee; once submitted, the content cannot be deleted or modified. Currently, this platform does not support the uploading of media content such as images, audio, or video.
+2. Service Limitations and Technical Risks
+We strive to ensure the normal operation of our services; however, we make no guarantees regarding technical failures, service interruptions, or the termination of operations of the underlying blockchain platform. If issues arise from the blockchain platform that prevent the saving, access, or retention of users' recorded content, this platform will not be liable for any compensation.
+Given the decentralized and transparent nature of blockchain, users must understand that their records will be stored publicly, and this platform cannot control or modify the content on the blockchain.
+3. Blockchain Records and Retrieval
+Although blockchain offers persistence, we do not guarantee that users' recorded content will exist permanently or be retrievable. Due to future technological adjustments or policy changes, the content uploaded by users may become inaccessible or lost. The platform is not liable for such occurrences.
+4. Prohibition of Sensitive Information
+Users are prohibited from uploading any sensitive, illegal, or inappropriate information, including but not limited to:
+∙ Pornographic content;
+∙ Promotion of gambling, drugs, or other illegal activities;
+∙ Content related to national security, subversion of state power, or containing politically or religiously extremist statements;
+∙ Content that involves violence, terrorism, or infringement of others' legitimate rights.
+Users who upload such content will bear the corresponding legal responsibilities, and although the platform cannot delete records from the blockchain, users are responsible for the content they upload.
+5. Risks Associated with Blockchain
+The blockchain network is subject to uncontrollable technical risks, such as hacking attacks and network failures. Users must understand and accept the risks associated with the use of blockchain technology, for which this platform assumes no liability.
+6. Force Majeure Clause
+In the event of service interruptions or record loss due to force majeure factors (including but not limited to natural disasters, policy changes, network attacks, etc.), the platform shall not bear any responsibility.`,
+    },
+    Disclaimer: {
+      title: "Disclaimer",
+      content: `1. Information Collection
+This platform does not collect users' personal identification information. Users can submit content anonymously, and the platform will not record, store, or process any personal data of users. The content uploaded by users is recorded on the blockchain and stored publicly, allowing anyone to view it.
+2. Transparency of Blockchain
+Due to the nature of blockchain, the content submitted by users will be permanently and publicly stored. Users should understand and agree that their uploaded content will be transparent to the public and will not be modified or deleted. Users are advised to carefully confirm the legality and compliance of their content before uploading.
+3. Third-Party Blockchain Platforms
+This platform relies on the technical support of third-party blockchain service providers. Users' content will be recorded and stored through third-party blockchain platforms. Users understand and accept that the platform assumes no responsibility for the operational status, technical security, or service availability of third-party blockchain services.
+4. Data Security
+While blockchain offers security, we make no commitments regarding the long-term accessibility of users' content. Users should understand that due to technical changes or policy adjustments within the blockchain network, their uploaded content may become inaccessible or lost in the future.
+5. Legal Compliance
+This platform complies with the relevant provisions of the Cybersecurity Law of the People's Republic of China, the Data Security Law, and the Personal Information Protection Law. The content uploaded by users must not violate the laws and regulations of the People's Republic of China. Users bear full responsibility for any legal liabilities arising from the uploading of illegal content.
+6. User Rights
+Users have the right to decide whether to submit content on this platform and understand that their content will be permanently stored on the blockchain and cannot be deleted. Users should carefully verify their content before submission to ensure its legality.
+    `,
+    },
+  },
 };

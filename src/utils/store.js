@@ -27,3 +27,14 @@ export const useChainStore = create((set) => ({
     });
   },
 }));
+
+export const useTermsStore = create((set) => ({
+  setAcceptance: async (acceptance) => {
+    localStorage.setItem("terms", acceptance);
+    document.cookie = `terms=${acceptance};max-age=Infinity;expires=Fri, 31 Dec 9999 23:59:59 GMT;`;
+
+    set(() => {
+      return { acceptance };
+    });
+  },
+}));

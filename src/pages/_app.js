@@ -1,7 +1,7 @@
 import Head from "next/head";
 import { useEffect } from "react";
 import { IntlProvider } from "use-intl";
-import { useLocaleStore, useChainStore } from "@/utils/store";
+import { useLocaleStore, useChainStore, useTermsStore } from "@/utils/store";
 import Layout from "@/components/Layout";
 import "@/styles/globals.css";
 import Script from "next/script";
@@ -25,6 +25,11 @@ export default function App({ Component, pageProps }) {
     setChain: state.setChain,
   }));
 
+  const termsStore = useTermsStore((state) => ({
+    acceptance: state.acceptance,
+    setAcceptance: state.setAcceptance,
+  }));
+
   useEffect(() => {
     // 加载 localstorage 中的配置
 
@@ -41,7 +46,18 @@ export default function App({ Component, pageProps }) {
       process.env.NEXT_PUBLIC_CHAIN;
 
     chainStore.setChain(chain);
-  }, [localeStore.locale, chainStore.chain]);
+
+    // 默认 store 中是不存 terms 值的，也即 undefined
+    // 第一次加载时用 env config 值
+    // 第二次读 localstorage 中的值
+    // 经过前两次后，实时运行中读 store 中值
+    const acceptance =
+      termsStore.acceptance ||
+      localStorage.getItem("terms") ||
+      process.env.NEXT_PUBLIC_TERMS;
+
+    termsStore.setAcceptance(acceptance);
+  }, [localeStore.locale, chainStore.chain, termsStore.terms]);
 
   return localeStore.locale ? (
     <IntlProvider

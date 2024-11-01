@@ -1,14 +1,9 @@
-import { useLocaleStore } from "@/utils/store";
 import { memo } from "react";
 import { useTranslations } from "use-intl";
 import Footer from "./Footer";
 
 function Layout({ children }) {
   const t = useTranslations("Meta");
-  const localeStore = useLocaleStore((state) => ({
-    locale: state.locale,
-    setLocale: state.setLocale,
-  }));
 
   return (
     <>

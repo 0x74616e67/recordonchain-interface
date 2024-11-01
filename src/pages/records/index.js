@@ -109,10 +109,7 @@ function Records() {
       >
         <Spin spinning={loading}>
           {list.map((l) => (
-            <div
-              className="bg-gray0/20 p-4 mb-4 rounded last:mb-0"
-              key={l.hash}
-            >
+            <div className="bg-gray0/20 p-4 mb-4 rounded" key={l.hash}>
               <div className="text-wrap break-words">{l.message}</div>
               <div className="text-right mt-4">
                 {formatTimestamp(l.timestamp)}

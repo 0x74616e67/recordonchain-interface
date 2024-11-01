@@ -2,17 +2,23 @@ import { useRouter } from "next/router";
 import { useState, useCallback, useEffect } from "react";
 import { send, MAX_CHARACTER_LENGTH } from "@/utils";
 import { isFreeTrailChain } from "@/utils/blockchain";
-import { useTxStore, useChainStore } from "@/utils/store";
+import { useTxStore, useChainStore, useTermsStore } from "@/utils/store";
 import Spin from "@/components/Spin";
 import ChainComponent from "@/components/Chain";
 import { useTranslations } from "use-intl";
 import Head from "next/head";
+import Terms from "@/components/Terms";
 
 export default function Create() {
   const txStore = useTxStore((state) => ({ tx: state.tx, add: state.add }));
   const chainStore = useChainStore((state) => ({
     chain: state.chain,
   }));
+  const termsStore = useTermsStore((state) => ({
+    acceptance: state.acceptance,
+    setAcceptance: state.setAcceptance,
+  }));
+
   const router = useRouter();
   const t = useTranslations("Record");
 
@@ -23,14 +29,8 @@ export default function Create() {
   const [errorCodeKey, setErrorCodeKey] = useState("");
   const [chain, setChain] = useState(chainStore.chain);
   const [loading, setLoading] = useState(false);
-
-  useEffect(() => {
-    if (isFreeTrailChain(chain)) {
-      setCode("00000000");
-    } else {
-      setCode("");
-    }
-  }, [chain]);
+  // Term dialog
+  const [open, setTermsDialogOpen] = useState(false);
 
   const handleRecordChange = useCallback((e) => {
     setMessage(e.target.value);
@@ -48,22 +48,11 @@ export default function Create() {
     setErrorCodeKey("");
   }, []);
 
-  const handleSubmit = async () => {
-    const messageIsEmpty = message.trim() === "";
-    const codeIsEmpty = code.trim() === "";
+  const handleCancel = useCallback(() => {
+    setTermsDialogOpen(false);
+  }, []);
 
-    if (messageIsEmpty) {
-      setErrorKey("empty");
-    }
-
-    if (codeIsEmpty) {
-      setErrorCodeKey("empty");
-    }
-
-    if (messageIsEmpty || codeIsEmpty) {
-      return;
-    }
-
+  const handleSend = useCallback(async () => {
     setLoading(true);
 
     try {
@@ -95,7 +84,47 @@ export default function Create() {
       setErrorKey("send");
       setLoading(false);
     }
-  };
+  }, [chain, message, code]);
+
+  const handleSubmit = useCallback(async () => {
+    // 1. 先检查输入框内容是否满足
+    const messageIsEmpty = message.trim() === "";
+    const codeIsEmpty = code.trim() === "";
+
+    if (messageIsEmpty) {
+      setErrorKey("empty");
+    }
+
+    if (codeIsEmpty) {
+      setErrorCodeKey("empty");
+    }
+
+    if (messageIsEmpty || codeIsEmpty) {
+      return;
+    }
+
+    // 2. 判断用户是否接受条款
+    if (termsStore.acceptance === "true") {
+      handleSend();
+    } else {
+      // show terms dialog
+      setTermsDialogOpen(true);
+    }
+  }, [message, code.trim(), handleSend, termsStore.acceptance]);
+
+  const handleOk = useCallback(async () => {
+    setTermsDialogOpen(false);
+
+    handleSend();
+  }, [handleSend]);
+
+  useEffect(() => {
+    if (isFreeTrailChain(chain)) {
+      setCode("00000000");
+    } else {
+      setCode("");
+    }
+  }, [chain]);
 
   // there is record content error or code error
   const hasError = errorKey || errorCodeKey;
@@ -105,6 +134,9 @@ export default function Create() {
       <Head>
         <title>{t("meta.title")}</title>
       </Head>
+
+      <Terms open={open} onOk={handleOk} onCancel={handleCancel}></Terms>
+
       <Spin spinning={loading}>
         <div className="grid grid-cols-1 gap-x-4 gap-y-4 sm:grid-cols-1">
           {/* record textare */}
