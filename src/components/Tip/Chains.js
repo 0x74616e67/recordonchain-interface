@@ -19,7 +19,7 @@ function Chains() {
       <div className="mt-4">
         <h3 className="text-base font-bold">Ethereum：</h3>
         <ul className="list-disc ml-4">
-          {t.rich("conflux.li", {
+          {t.rich("ethereum.li", {
             li: (chunks) => <li>{chunks}</li>,
             b: (chunks) => <b>{chunks}</b>,
           })}

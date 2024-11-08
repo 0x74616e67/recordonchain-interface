@@ -93,7 +93,7 @@ export default function Record() {
             </div>
             <div className="bg-gray0/20 p-4 my-2 rounded">
               {tx.message ? (
-                <div>{tx.message}</div>
+                <div className="text-wrap break-words">{tx.message}</div>
               ) : (
                 <div className="text-gray0">{t("noContent")}</div>
               )}

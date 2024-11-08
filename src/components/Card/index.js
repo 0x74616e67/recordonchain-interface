@@ -47,7 +47,7 @@ const CardComponent = React.memo(function CardComponent({
         className="absolute left-4 right-4 top-0 min-h-96 flex flex-col justify-between z-[-10] hidden bg-gray0/20 p-4 my-4 rounded"
       >
         <div className="">
-          <div>{tx.message}</div>
+          <div className="text-wrap break-words">{tx.message}</div>
           <div className="text-right mt-4">{formatTimestamp(tx.timestamp)}</div>
         </div>
         <QRCode

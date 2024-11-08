@@ -166,7 +166,9 @@ export async function getRecords({
     );
 
     if (response.code === 0) {
-      return response.data;
+      // 这里暂时前端添加 chain 到 list 中每条记录中
+      // 如果后期 getRecords 中 chain 是 optional 的，比如返回最新的所有 records，再交由后端处理
+      return response.data.map((d) => ({ ...d, chain }));
     } else {
       throw new Error(response.message);
     }
