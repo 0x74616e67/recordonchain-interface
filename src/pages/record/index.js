@@ -8,6 +8,9 @@ import ChainComponent from "@/components/Chain";
 import { useTranslations } from "use-intl";
 import Head from "next/head";
 import Terms from "@/components/Terms";
+import Tip from "@/components/Tip";
+import GetCode from "@/components/Tip/GetCode";
+import Chains from "@/components/Tip/Chains";
 
 export default function Create() {
   const txStore = useTxStore((state) => ({ tx: state.tx, add: state.add }));
@@ -185,7 +188,10 @@ export default function Create() {
           {/* free trail */}
           <div className="sm:col-span-4">
             <label htmlFor="chain" className="text-base">
-              {t("chain.label")}
+              {t("chain.label")}{" "}
+              <Tip>
+                <Chains></Chains>
+              </Tip>
             </label>
             <ChainComponent onChange={handleChainChange} value={chain} />
           </div>
@@ -197,7 +203,10 @@ export default function Create() {
             }`}
           >
             <label htmlFor="code" className="text-base">
-              {t("code.label")}
+              {t("code.label")}{" "}
+              <Tip>
+                <GetCode></GetCode>
+              </Tip>
             </label>
             <div className="mt-2">
               <input

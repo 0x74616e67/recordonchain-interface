@@ -11,14 +11,18 @@ function DialogComponent({
   onClose = () => {},
   onOk = () => {},
   onCancel = () => {},
-  okText = "OK",
-  cancelText = "Cancel",
-  okDisabled = false,
   title = "",
   children,
+  okButton = ["OK", false], // [text, disabled]
+  cancelButton = ["Cancel", false], // [text, disabled]
+  closeable = false,
 }) {
   const disabledClassName =
     "disabled disabled:bg-gray-400 disabled:cursor-not-allowed";
+  const [okText, okDisabled] = okButton;
+  const [cancelText, cancelDisabled] = cancelButton;
+  const isShowOk = !!okButton.length;
+  const isShowCancel = !!cancelButton.length;
 
   return (
     <Dialog open={open} onClose={onClose} className="relative z-10 aaaa">
@@ -28,11 +32,34 @@ function DialogComponent({
       />
 
       <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
-        <div className="flex min-h-full max-h-full items-center justify-center p-4 text-center sm:items-center sm:p-0">
+        <div
+          className="flex min-h-full max-h-full items-center justify-center p-4 text-center sm:items-center sm:p-0 !touch-auto"
+          // onPointerEnter={onCancel}
+          onClick={() => alert(1)}
+        >
           <DialogPanel
             transition
-            className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all data-[closed]:translate-y-4 data-[closed]:opacity-0 data-[enter]:duration-300 data-[leave]:duration-200 data-[enter]:ease-out data-[leave]:ease-in sm:my-8 sm:w-full sm:max-w-lg data-[closed]:sm:translate-y-0 data-[closed]:sm:scale-95"
+            className="relative w-full transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all data-[closed]:translate-y-4 data-[closed]:opacity-0 data-[enter]:duration-300 data-[leave]:duration-200 data-[enter]:ease-out data-[leave]:ease-in sm:my-8 sm:w-full sm:max-w-lg data-[closed]:sm:translate-y-0 data-[closed]:sm:scale-95"
           >
+            {closeable && (
+              <span className="absolute right-2 top-2" onClick={onCancel}>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.5}
+                  stroke="currentColor"
+                  className="size-5 text-gray-600"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M6 18 18 6M6 6l12 12"
+                  />
+                </svg>
+              </span>
+            )}
+
             <div className="bg-white px-4 py-3">
               <div className="sm:flex sm:items-start">
                 <div className="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left">
@@ -50,26 +77,35 @@ function DialogComponent({
             </div>
 
             {/* buttons area */}
-            <div className="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
-              <button
-                type="button"
-                onClick={onOk}
-                className={`inline-flex w-full justify-center rounded-md bg-blue-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 sm:ml-3 sm:w-auto
+            {(isShowOk || isShowCancel) && (
+              <div className="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
+                {isShowOk && (
+                  <button
+                    type="button"
+                    onClick={onOk}
+                    className={`inline-flex w-full justify-center rounded-md bg-blue-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 sm:ml-3 sm:w-auto
                   ${okDisabled ? disabledClassName : ""}
                 `}
-                disabled={okDisabled}
-              >
-                {okText}
-              </button>
-              <button
-                type="button"
-                data-autofocus
-                onClick={onCancel}
-                className="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto"
-              >
-                {cancelText}
-              </button>
-            </div>
+                    disabled={okDisabled}
+                  >
+                    {okText}
+                  </button>
+                )}
+                {isShowCancel && (
+                  <button
+                    type="button"
+                    data-autofocus
+                    onClick={onCancel}
+                    className={`mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto ${
+                      okDisabled ? disabledClassName : ""
+                    }`}
+                    disabled={cancelDisabled}
+                  >
+                    {cancelText}
+                  </button>
+                )}
+              </div>
+            )}
           </DialogPanel>
         </div>
       </div>

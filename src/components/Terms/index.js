@@ -34,8 +34,8 @@ function Terms({ open = false, onOk = () => {}, onCancel = () => {} }) {
       open={open}
       onOk={handleOk}
       onCancel={onCancel}
-      okText={t("Dialog.ok")}
-      cancelText={t("Dialog.cancel")}
+      okButton={[t("Dialog.ok")]}
+      cancelButton={[t("Dialog.cancel")]}
     >
       <div className="overflow-auto">
         <UserAgreement></UserAgreement>
