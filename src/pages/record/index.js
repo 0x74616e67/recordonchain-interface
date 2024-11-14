@@ -11,6 +11,7 @@ import Terms from "@/components/Terms";
 import Tip from "@/components/Tip";
 import GetCode from "@/components/Tip/GetCode";
 import Chains from "@/components/Tip/Chains";
+import Button from "@/components/Button";
 
 export default function Create() {
   const txStore = useTxStore((state) => ({ tx: state.tx, add: state.add }));
@@ -160,7 +161,7 @@ export default function Create() {
                 placeholder=""
                 className="
                 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 
-                placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6
+                placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6
                  resize-none
               "
                 resize="none"
@@ -214,7 +215,7 @@ export default function Create() {
                 name="code"
                 autoComplete="code-name"
                 type="text"
-                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6"
+                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:max-w-xs sm:text-sm sm:leading-6"
                 onChange={handleCodeChange}
                 value={code}
                 placeholder={t(`code.placeholder.${chain}`)}
@@ -228,14 +229,13 @@ export default function Create() {
           </div>
 
           <div className="sm:col-span-4">
-            <button
-              className={`bg-blue0 text-white rounded-full flex items-center justify-center leading-none h-12 float-right px-4 ${
-                hasError ? "opacity-50 cursor-not-allowed" : ""
-              }`}
+            <Button
+              disabled={hasError}
               onClick={handleSubmit}
+              className="float-right"
             >
               {t("submit")}
-            </button>
+            </Button>
           </div>
         </div>
       </Spin>

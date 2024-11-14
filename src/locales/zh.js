@@ -4,12 +4,15 @@ export default {
     description:
       "区块链记，一个依托于区块链技术的平台，让您可以将珍贵的想法永久记录下来。",
   },
-  Tip: {
+  Common: {
     button: {
       confirm: "确认",
       cancel: "取消",
       close: "关闭",
+      save: "保存",
     },
+  },
+  Tip: {
     verificationCode: {
       price: {
         title: "验证码价格：",

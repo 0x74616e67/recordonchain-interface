@@ -6,6 +6,7 @@ const QRCodeComponent = memo(function QRCodeComponent({
   onSuccess = () => {},
   onError = () => {},
   className,
+  width = 100,
 }) {
   const myRef = useRef(null);
 
@@ -16,7 +17,8 @@ const QRCodeComponent = memo(function QRCodeComponent({
       myRef.current,
       text,
       {
-        width: 150,
+        width,
+        margin: 2,
       },
       function (error) {
         if (error) {

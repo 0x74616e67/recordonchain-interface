@@ -42,18 +42,21 @@ function Terms({ open = false, onOk = () => {}, onCancel = () => {} }) {
         <Disclaimer></Disclaimer>
         <PrivacyPolicy></PrivacyPolicy>
       </div>
-      <div className="relative flex gap-x-3 ml-1 mt-3 flex-none">
+      <div className="relative flex gap-x-3 ml-1 mt-2 -mb-2 flex-none">
         <div className="flex h-6 items-center">
           <input
             id="comments"
             name="comments"
             type="checkbox"
-            className="h-3 w-3 rounded border-gray-300 text-blue-600 focus:ring-blue-600"
+            className="h-3 w-3 rounded border-gray-300 text-blue-600 hover:text-blue-500 focus:ring-blue-600"
             onChange={handleChange}
           />
         </div>
         <div className="text-sm/6">
-          <label htmlFor="comments" className="font-medium text-blue-900">
+          <label
+            htmlFor="comments"
+            className="font-medium text-blue-600 hover:text-blue-500"
+          >
             {t("Dialog.checkbox")}
           </label>
         </div>

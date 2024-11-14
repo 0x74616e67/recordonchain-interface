@@ -4,12 +4,15 @@ export default {
     description:
       "Qu Kuai Lian Ji, a platform based on blockchain technology, allows you to record your precious thoughts permanently.",
   },
-  Tip: {
+  Common: {
     button: {
       confirm: "Confirm",
       cancel: "Cancel",
       close: "Close",
+      save: "Save",
     },
+  },
+  Tip: {
     verificationCode: {
       price: {
         title: "Verification Code Price: ",

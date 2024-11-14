@@ -42,7 +42,7 @@ export default function Home() {
           alt="beian"
         ></img>
         <a
-          className="text-blue-500 ml-1"
+          className="text-blue-600 hover:text-blue-500 ml-1"
           href="https://beian.mps.gov.cn/#/query/webSearch?code=61019002003057"
           rel="noreferrer"
           target="_blank"
@@ -52,7 +52,7 @@ export default function Home() {
         <a
           href="https://beian.miit.gov.cn"
           target="_blank"
-          className="text-blue-500 ml-2"
+          className="text-blue-600 hover:text-blue-500 ml-2"
         >
           陕ICP备2024048059号-1
         </a>
@@ -62,7 +62,7 @@ export default function Home() {
 
       <Link
         href="/record"
-        className={`bg-blue0 text-white inline-block w-12 h-12 rounded-full flex items-center justify-center leading-none sticky bottom-0 left-full ${
+        className={`bg-blue-600 hover:bg-blue-500 text-white inline-block w-12 h-12 rounded-full flex items-center justify-center leading-none sticky bottom-0 left-full ${
           process.env.NEXT_PUBLIC_SERVER_IS === "inside" ? "-mt-8" : ""
         }`}
       >

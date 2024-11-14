@@ -16,7 +16,7 @@ const NavbarComponent = memo(function NavbarComponent({ title = "" }) {
   return (
     <div className="mb-4 text-xl">
       <span
-        className="mr-2 text-lg text-blue0 cursor-pointer rotate-180 inline-block"
+        className="mr-2 text-lg text-blue-600 hover:text-blue-500 cursor-pointer rotate-180 inline-block"
         onClick={handleClick}
       >
         &#10132;

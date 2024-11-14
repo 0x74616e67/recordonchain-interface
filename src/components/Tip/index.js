@@ -4,7 +4,7 @@ import { useCallback, useState } from "react";
 import { useTranslations } from "use-intl";
 
 export default function Tips({ children }) {
-  const t = useTranslations("Tip");
+  const t = useTranslations("Common");
   const [open, setOpen] = useState(false);
 
   const handleIconClick = useCallback(() => {

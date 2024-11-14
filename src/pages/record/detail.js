@@ -2,15 +2,16 @@ import { useRouter } from "next/router";
 import { useCallback, useEffect, useState } from "react";
 import { useTxStore } from "@/utils/store";
 import { formatTimestamp, getTxURL, getTxInfo } from "@/utils";
-import Card from "@/components/Card";
+import SharePanel from "@/components/SharePanel";
 import Spin from "@/components/Spin";
 import { useTranslations } from "use-intl";
 import Head from "next/head";
+import Button from "@/components/Button";
 
 export default function Record() {
   const router = useRouter();
   const txStore = useTxStore((state) => ({ tx: state.tx }));
-  const [showShareCard, setShowShareCard] = useState(false);
+  const [open, setOpen] = useState(false);
   const [tx, setTx] = useState({
     hash: "",
     message: "",
@@ -60,21 +61,31 @@ export default function Record() {
     main();
   }, [txStore.tx, router.query, router.asPath]);
 
-  const handleClose = useCallback(() => setShowShareCard(false), []);
+  const handleClose = useCallback(() => setOpen(false), []);
 
   const handleShare = useCallback(() => {
     if (errorKey !== "") {
       return;
     }
 
-    setShowShareCard(!showShareCard);
-  }, [errorKey, showShareCard]);
+    setOpen(!open);
+  }, [errorKey, open]);
+
+  const disabled = !Object.keys(tx).length;
 
   return (
     <>
       <Head>
         <title>{t("meta.title")}</title>
       </Head>
+
+      <SharePanel
+        tx={tx}
+        open={open}
+        onOk={handleClose}
+        onCancel={handleClose}
+      ></SharePanel>
+
       <Spin spinning={loading}>
         <div>
           <div>
@@ -82,7 +93,7 @@ export default function Record() {
               {t.rich("link", {
                 scan: (chunks) => (
                   <a
-                    className="text-blue0 hover:text-blue0-700 visited:text-blue0-600"
+                    className="text-blue-600 hover:text-blue-500"
                     href={getTxURL(tx.chain, tx.hash)}
                     target="_blank"
                   >
@@ -115,22 +126,15 @@ export default function Record() {
                 })}
               </div>
             )}
-
-            <button
-              className={`bg-blue0 text-white rounded-full flex items-center justify-center leading-none px-4 h-12 float-right ${
-                errorKey !== "" || !tx.message
-                  ? "opacity-50 cursor-not-allowed"
-                  : ""
-              }`}
+            <Button
               onClick={handleShare}
+              disabled={disabled}
+              className="float-right"
             >
               {t("share")}
-            </button>
+            </Button>
           </div>
         </div>
-        {showShareCard && !!Object.keys(tx).length && (
-          <Card tx={tx} onClose={handleClose}></Card>
-        )}
       </Spin>
     </>
   );
