@@ -1,4 +1,4 @@
-import { memo } from "react";
+import { memo, useCallback, useRef } from "react";
 import {
   Dialog,
   DialogBackdrop,
@@ -18,10 +18,18 @@ function DialogComponent({
   cancelButton = ["Cancel", false], // [text, disabled]
   closeable = false,
 }) {
+  const targetDivRef = useRef(null);
   const [okText, okDisabled] = okButton;
   const [cancelText, cancelDisabled] = cancelButton;
   const isShowOk = !!okButton.length;
   const isShowCancel = !!cancelButton.length;
+
+  const handleTouchEnd = useCallback((event) => {
+    // 检查触摸结束时的目标元素是否是目标 div
+    if (targetDivRef.current === event.target) {
+      onCancel();
+    }
+  }, []);
 
   return (
     <Dialog open={open} onClose={onClose} className="relative z-10 aaaa">
@@ -32,9 +40,10 @@ function DialogComponent({
 
       <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
         <div
-          className="flex min-h-full max-h-full items-center justify-center p-4 text-center sm:items-center sm:p-0 !touch-auto"
-          // onPointerEnter={onCancel}
+          ref={targetDivRef}
+          className="flex min-h-full max-h-full items-center justify-center p-4 text-center sm:items-center sm:p-0"
           onClick={onCancel}
+          onTouchEnd={handleTouchEnd}
         >
           <DialogPanel
             transition
