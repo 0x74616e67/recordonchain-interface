@@ -118,7 +118,7 @@ function Records() {
       </div>
       <div
         id="records_container"
-        className="mt-4 absolute left-4 right-4 bottom-0 top-14 overflow-auto"
+        className="mt-5 absolute left-4 right-4 bottom-0 top-12 overflow-auto"
       >
         <Spin spinning={loading}>
           {list.map((l) => (

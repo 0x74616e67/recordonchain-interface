@@ -13,7 +13,7 @@ function Setting({}) {
         <title>{t("meta.title")}</title>
       </Head>
       <Locale></Locale>
-      <div className="mt-2"></div>
+      <div className="mt-4"></div>
       <Chain></Chain>
       <div className="mt-2"></div>
       <div className="grid grid-cols-3 gap-4 flex items-center h-11 sm:pr-4">

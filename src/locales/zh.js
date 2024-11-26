@@ -120,9 +120,9 @@ export default {
     },
     chain: {
       label: "选择记录平台",
-      conflux: "国内平台",
-      ethereum: "国际平台",
-      freetrail: "试用平台 - 仅供体验",
+      conflux: "Conflux - 国内平台",
+      ethereum: "Ethereum - 国际平台",
+      freetrail: "免费试用 - 仅供体验",
     },
     code: {
       label: "输入验证码",

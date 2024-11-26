@@ -120,9 +120,9 @@ export default {
     },
     chain: {
       label: "Select a recording platform",
-      conflux: "Chinese platform",
-      ethereum: "International platform",
-      freetrail: "Trial platform - for experience only",
+      conflux: "Conflux - Chinese platform",
+      ethereum: "Ethereum - International platform",
+      freetrail: "Free Trial Offer - For experience only",
     },
     code: {
       label: "Enter confirmation code",
