@@ -7,8 +7,6 @@ function Footer({}) {
   const t = useTranslations("Footer");
   const router = useRouter();
 
-  console.log("router: ", router.route);
-
   const routers = useMemo(() => {
     return [
       {
@@ -100,7 +98,7 @@ function Footer({}) {
   }, []);
 
   return (
-    <footer className="grid grid-cols-4 gap-4 text-center bg-gray-100 py-2">
+    <footer className="grid grid-cols-4 gap-4 bg-gray-100 py-2 text-center">
       {routers.map((r) => (
         <Link href={r.route} key={r.route}>
           <div

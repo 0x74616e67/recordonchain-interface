@@ -6,7 +6,7 @@ function PrivacyPolicy() {
   return (
     <>
       <span>{t("PrivacyPolicy.title")}</span>
-      <pre className="break-words whitespace-break-spaces text-left text-xs">
+      <pre className="whitespace-break-spaces break-words text-left text-xs">
         {t("PrivacyPolicy.content")}
       </pre>
     </>

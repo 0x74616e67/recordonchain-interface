@@ -42,7 +42,7 @@ function Terms({ open = false, onOk = () => {}, onCancel = () => {} }) {
         <Disclaimer></Disclaimer>
         <PrivacyPolicy></PrivacyPolicy>
       </div>
-      <div className="relative flex gap-x-3 ml-1 mt-2 -mb-2 flex-none">
+      <div className="relative -mb-2 ml-1 mt-2 flex flex-none gap-x-3">
         <div className="flex h-6 items-center">
           <input
             id="comments"

@@ -6,7 +6,7 @@ function Disclaimer() {
   return (
     <>
       <span>{t("Disclaimer.title")}</span>
-      <pre className="break-words whitespace-break-spaces text-left text-xs">
+      <pre className="whitespace-break-spaces break-words text-left text-xs">
         {t("Disclaimer.content")}
       </pre>
     </>

@@ -8,7 +8,7 @@ const PortraitComponent = memo(function PortraitComponent({
   info = "",
 }) {
   return (
-    <div className="mb-4 text-base border-[#E2E8F0] border-[1px] p-3 mt-3 rounded">
+    <div className="mb-4 mt-3 rounded border-[1px] border-[#E2E8F0] p-3 text-base">
       <div className="flex">
         {/* <Image
           src={avatar}
@@ -21,9 +21,9 @@ const PortraitComponent = memo(function PortraitComponent({
           }}
           alt="avatar"
         ></Image> */}
-        <div className="flex flex-col ml-0">
+        <div className="ml-0 flex flex-col">
           <span className="font-bold">{name}</span>
-          <span className="text-gray0 text-sm">{identity}</span>
+          <span className="text-sm text-gray0">{identity}</span>
         </div>
       </div>
       <div className="mt-2">{info}</div>

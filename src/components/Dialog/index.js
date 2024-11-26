@@ -32,7 +32,7 @@ function DialogComponent({
   }, []);
 
   return (
-    <Dialog open={open} onClose={onClose} className="relative z-10 aaaa">
+    <Dialog open={open} onClose={onClose} className="relative z-10">
       <DialogBackdrop
         transition
         className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity data-[closed]:opacity-0 data-[enter]:duration-300 data-[leave]:duration-200 data-[enter]:ease-out data-[leave]:ease-in"
@@ -41,7 +41,7 @@ function DialogComponent({
       <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
         <div
           ref={targetDivRef}
-          className="flex min-h-full max-h-full items-center justify-center p-4 text-center sm:items-center sm:p-0"
+          className="flex max-h-full min-h-full items-center justify-center p-4 text-center sm:items-center sm:p-0"
           onClick={onCancel}
           onTouchEnd={handleTouchEnd}
         >
@@ -73,14 +73,14 @@ function DialogComponent({
 
             <div className="bg-white p-4">
               <div className="sm:flex sm:items-start">
-                <div className="mt-3 text-center sm:mt-0 sm:text-left w-full">
+                <div className="mt-3 w-full text-center sm:mt-0 sm:text-left">
                   <DialogTitle
                     as="h3"
                     className="text-base font-semibold text-gray-900"
                   >
                     {title}
                   </DialogTitle>
-                  <div className="mt-4 max-h-[60vh] flex flex-col">
+                  <div className="mt-4 flex max-h-[60vh] flex-col">
                     {children}
                   </div>
                 </div>

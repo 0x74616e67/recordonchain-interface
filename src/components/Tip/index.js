@@ -22,7 +22,7 @@ export default function Tips({ children }) {
   return (
     <span>
       <QuestionMarkCircleIcon
-        className="size-5 align-text-top inline-block"
+        className="inline-block size-5 align-text-top"
         onClick={handleIconClick}
       ></QuestionMarkCircleIcon>
 

@@ -18,7 +18,7 @@ function Chain() {
   };
 
   return (
-    <div className={`grid grid-cols-2 gap-4 flex items-center`}>
+    <div className={`flex grid grid-cols-2 items-center gap-4`}>
       {/* <Label className="block text-sm font-medium leading-6 text-gray-900">
         {t("title")}
       </Label> */}

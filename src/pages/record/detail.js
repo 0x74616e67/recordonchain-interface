@@ -102,13 +102,13 @@ export default function Record() {
                 ),
               })}
             </div>
-            <div className="bg-gray0/20 p-4 my-2 rounded">
+            <div className="my-2 rounded bg-gray0/20 p-4">
               {tx.message ? (
                 <div className="text-wrap break-words">{tx.message}</div>
               ) : (
                 <div className="text-gray0">{t("noContent")}</div>
               )}
-              <div className="text-right mt-4">
+              <div className="mt-4 text-right">
                 {tx.timestamp ? formatTimestamp(tx.timestamp) : ""}
               </div>
             </div>
@@ -117,7 +117,7 @@ export default function Record() {
                 {t.rich(`error.${errorKey}`, {
                   button: (chunks) => (
                     <button
-                      className="text-red-600 hover:text-red-700 visited:text-red-500 underline"
+                      className="text-red-600 underline visited:text-red-500 hover:text-red-700"
                       onClick={() => getInfo()}
                     >
                       {chunks}

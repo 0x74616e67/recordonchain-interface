@@ -16,10 +16,10 @@ function Setting({}) {
       <div className="mt-4"></div>
       <Chain></Chain>
       <div className="mt-2"></div>
-      <div className="grid grid-cols-3 gap-4 flex items-center h-11 sm:pr-4">
+      <div className="flex grid h-11 grid-cols-3 items-center gap-4 sm:pr-4">
         <label>{t("contact")}</label>
         <a
-          className="text-right col-span-2 text-blue-600 hover:text-blue-500"
+          className="col-span-2 text-right text-blue-600 hover:text-blue-500"
           href="mailto:contact@qukuailianji.com"
           target="__blank"
         >

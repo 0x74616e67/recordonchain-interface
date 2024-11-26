@@ -5,11 +5,11 @@ function GetCode() {
   const t = useTranslations("Tip.verificationCode");
 
   return (
-    <div className="text-left text-sm px-2 max-h-full overflow-auto text-gray-800">
+    <div className="max-h-full overflow-auto px-2 text-left text-sm text-gray-800">
       <div>
         <h3 className="text-base font-bold">{t("price.title")}</h3>
         <p>{t("price.p1")}</p>
-        <ul className="list-disc ml-4">
+        <ul className="ml-4 list-disc">
           {t.rich("price.li", {
             li: (chunks) => <li>{chunks}</li>,
           })}
@@ -18,7 +18,7 @@ function GetCode() {
       </div>
       <div className="mt-4">
         <h3 className="text-base font-bold">{t("approach.title")}</h3>
-        <ul className="list-disc ml-4">
+        <ul className="ml-4 list-disc">
           {t.rich("approach.li", {
             li: (chunks) => <li>{chunks}</li>,
             span: (chunks) => <span>{chunks}</span>,
@@ -34,10 +34,10 @@ function GetCode() {
       </div>
       <div className="mt-4">
         <h3 className="text-base font-bold">{t("qa.title")}</h3>
-        <ul className="list-decimal ml-4">
+        <ul className="ml-4 list-decimal">
           <li>
             <p>{t("qa.q1.q")}</p>
-            <ul className="list-disc ml-4">
+            <ul className="ml-4 list-disc">
               {t.rich("qa.q1.a", {
                 li: (chunks) => <li>{chunks}</li>,
                 b: (chunks) => <b>{chunks}</b>,

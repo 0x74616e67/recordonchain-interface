@@ -5,11 +5,11 @@ function Chains() {
   const t = useTranslations("Tip.chains");
 
   return (
-    <div className="text-left text-sm px-2 max-h-full overflow-auto text-gray-800">
+    <div className="max-h-full overflow-auto px-2 text-left text-sm text-gray-800">
       <h1>{t("brief")}</h1>
       <div className="mt-4">
         <h3 className="text-base font-bold">{t("conflux.title")}</h3>
-        <ul className="list-disc ml-4">
+        <ul className="ml-4 list-disc">
           {t.rich("conflux.li", {
             li: (chunks) => <li>{chunks}</li>,
             b: (chunks) => <b>{chunks}</b>,
@@ -18,7 +18,7 @@ function Chains() {
       </div>
       <div className="mt-4">
         <h3 className="text-base font-bold">Ethereum：</h3>
-        <ul className="list-disc ml-4">
+        <ul className="ml-4 list-disc">
           {t.rich("ethereum.li", {
             li: (chunks) => <li>{chunks}</li>,
             b: (chunks) => <b>{chunks}</b>,

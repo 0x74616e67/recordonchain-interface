@@ -10,9 +10,9 @@ const SpinComponent = memo(function SpinComponent({
     <>
       <div className={spinning ? "blur-sm" : ""}>{children}</div>
       {spinning ? (
-        <div className="fixed top-0 bottom-0 left-0 right-0 flex justify-center items-center">
+        <div className="fixed bottom-0 left-0 right-0 top-0 flex items-center justify-center">
           <svg
-            className="animate-spin h-10 w-10 text-blue-600 hover:text-blue-500"
+            className="h-10 w-10 animate-spin text-blue-600 hover:text-blue-500"
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"

@@ -7,10 +7,10 @@ function Layout({ children }) {
 
   return (
     <>
-      <div className="text-2xl h-16 bg-gray-100 flex items-center justify-between px-4 text-[#1E293B]">
+      <div className="flex h-16 items-center justify-between bg-gray-100 px-4 text-2xl text-[#1E293B]">
         <h1>{t("title")}</h1>
       </div>
-      <main className="p-4 relative h-[calc(100%-118px)] overflow-auto">
+      <main className="relative h-[calc(100%-118px)] overflow-auto p-4">
         {children}
       </main>
       <Footer />

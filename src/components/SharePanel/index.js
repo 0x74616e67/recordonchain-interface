@@ -112,35 +112,35 @@ const SharePanel = React.memo(function SharePanel({
         <img id="share_img" className="" alt="share-img" src="/photo.svg"></img>
       </div>
       {/* <div id="card" className="flex flex-col justify-between overflow-auto"> */}
-      <div id="card" className="flex flex-col justify-between hidden z-[-10]">
+      <div id="card" className="z-[-10] flex hidden flex-col justify-between">
         <div className="shrink-0 overflow-hidden">
           <img
             id="bg_img"
             src={bgImgSrc}
-            className="max-w-none max-h-none"
+            className="max-h-none max-w-none"
             alt="share-panel-bg"
             onLoad={handlebgImgLoad}
           ></img>
         </div>
-        <div className="flex-none shrink-0 p-2 border-gray-200 border-[1px] border-t-0">
-          <div className="text-left text-wrap break-words">{tx.message}</div>
-          <div className="text-right mt-4">{formatTimestamp(tx.timestamp)}</div>
+        <div className="flex-none shrink-0 border-[1px] border-t-0 border-gray-200 p-2">
+          <div className="text-wrap break-words text-left">{tx.message}</div>
+          <div className="mt-4 text-right">{formatTimestamp(tx.timestamp)}</div>
           <QRCode
-            className="mt-4 self-end float-right border-gray-200 border-[1px]"
+            className="float-right mt-4 self-end border-[1px] border-gray-200"
             text={getShareURL(tx.chain, tx.hash)}
             onSuccess={handleQRCodeSuccess}
             width={100}
           ></QRCode>
         </div>
       </div>
-      <div className="mt-4 h-14 flex justify-items-stretch">
+      <div className="mt-4 flex h-14 justify-items-stretch">
         {imgs.map((i, index) => (
           <div
-            className={`w-14 h-14 ${index > 0 ? "ml-4" : ""}`}
+            className={`h-14 w-14 ${index > 0 ? "ml-4" : ""}`}
             onClick={() => handleGalleryClick(index)}
             key={i}
           >
-            <img src={i} className="object-cover w-full h-full" alt="bg"></img>
+            <img src={i} className="h-full w-full object-cover" alt="bg"></img>
           </div>
         ))}
         <div>
@@ -149,7 +149,7 @@ const SharePanel = React.memo(function SharePanel({
             id="fileInput"
             accept="image/*"
             onChange={handleFileUploadChange}
-            className="relative w-14 h-14 ml-4 border-gray-200 border-[1px] focus:outline-none after:content-[''] after:text-red-500 after:absolute after:top-0 after:left-0 after:right-0 after:bottom-0 after:bg-upload after:bg-white after:bg-[length:28px_28px] after:bg-no-repeat after:bg-center !overflow-hidden"
+            className="relative ml-4 h-14 w-14 !overflow-hidden border-[1px] border-gray-200 after:absolute after:bottom-0 after:left-0 after:right-0 after:top-0 after:bg-white after:bg-upload after:bg-[length:28px_28px] after:bg-center after:bg-no-repeat after:text-red-500 after:content-[''] focus:outline-none"
           ></input>
         </div>
       </div>

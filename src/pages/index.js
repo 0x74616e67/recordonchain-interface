@@ -37,12 +37,12 @@ export default function Home() {
         }`}
       >
         <img
-          className="w-4 h-4 inline-block -mt-1"
+          className="-mt-1 inline-block h-4 w-4"
           src="/beian.png"
           alt="beian"
         ></img>
         <a
-          className="text-blue-600 hover:text-blue-500 ml-1"
+          className="ml-1 text-blue-600 hover:text-blue-500"
           href="https://beian.mps.gov.cn/#/query/webSearch?code=61019002003057"
           rel="noreferrer"
           target="_blank"
@@ -52,7 +52,7 @@ export default function Home() {
         <a
           href="https://beian.miit.gov.cn"
           target="_blank"
-          className="text-blue-600 hover:text-blue-500 ml-2"
+          className="ml-2 text-blue-600 hover:text-blue-500"
         >
           陕ICP备2024048059号-1
         </a>
@@ -62,7 +62,7 @@ export default function Home() {
 
       <Link
         href="/record"
-        className={`bg-blue-600 hover:bg-blue-500 text-white inline-block w-12 h-12 rounded-full flex items-center justify-center leading-none sticky bottom-0 left-full ${
+        className={`sticky bottom-0 left-full inline-block flex h-12 w-12 items-center justify-center rounded-full bg-blue-600 leading-none text-white hover:bg-blue-500 ${
           process.env.NEXT_PUBLIC_SERVER_IS === "inside" ? "-mt-8" : ""
         }`}
       >

@@ -112,23 +112,23 @@ function Records() {
       <Head>
         <title>{t("meta.title")}</title>
       </Head>
-      <div className={`grid grid-cols-2 gap-4 flex items-center`}>
+      <div className={`flex grid grid-cols-2 items-center gap-4`}>
         <label>{tSetting("chain")}</label>
         <ChainComponent onChange={handleChainChange} value={chain} />
       </div>
       <div
         id="records_container"
-        className="mt-5 absolute left-4 right-4 bottom-0 top-12 overflow-auto"
+        className="absolute bottom-0 left-4 right-4 top-12 mt-5 overflow-auto"
       >
         <Spin spinning={loading}>
           {list.map((l) => (
             <div
-              className="bg-gray0/20 p-4 mb-4 rounded"
+              className="mb-4 rounded bg-gray0/20 p-4"
               key={l.hash}
               onClick={() => handleCardClick(l)}
             >
               <div className="text-wrap break-words">{l.message}</div>
-              <div className="text-right mt-4">
+              <div className="mt-4 text-right">
                 {formatTimestamp(l.timestamp)}
               </div>
             </div>

@@ -22,7 +22,7 @@ function Locale({}) {
   }));
 
   const [value, setValue] = useState(
-    options.find((o) => o.value === localeStore.locale)
+    options.find((o) => o.value === localeStore.locale),
   );
 
   const handleChange = (option) => {
@@ -32,7 +32,7 @@ function Locale({}) {
 
   return (
     <div>
-      <div className="grid grid-cols-2 gap-4 flex items-center">
+      <div className="flex grid grid-cols-2 items-center gap-4">
         {/* <Label className="block text-sm font-medium leading-6 text-gray-900">
           {t("title")}
         </Label> */}

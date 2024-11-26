@@ -31,7 +31,7 @@ const QRCodeComponent = memo(function QRCodeComponent({
         // console.count("QRCodeComponent callback");
 
         onSuccess();
-      }
+      },
     );
   }, [myRef, text]);
 
