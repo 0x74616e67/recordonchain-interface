@@ -1,15 +1,13 @@
 import { memo, useState, useEffect, useCallback, useRef } from "react";
 import { useTranslations } from "use-intl";
 import Head from "next/head";
-import { getRecords, formatTimestamp, SCROLL_DISTANCE } from "@/utils";
-import { useChainStore, useTxStore } from "@/utils/store";
+import { getRecords, SCROLL_DISTANCE } from "@/utils";
+import { useChainStore } from "@/utils/store";
 import Spin from "@/components/Spin";
 import ChainComponent from "@/components/Chain";
-import { useRouter } from "next/router";
+import Card from "@/components/Card";
 
 function Records() {
-  const router = useRouter();
-  const txStore = useTxStore((state) => ({ tx: state.tx, add: state.add }));
   const chainStore = useChainStore((state) => ({
     chain: state.chain,
   }));
@@ -71,16 +69,6 @@ function Records() {
     }
   }, []);
 
-  const handleCardClick = useCallback((tx) => {
-    txStore.add(tx);
-    router.push({
-      pathname: `/record/detail`,
-      query: {
-        tx: `${tx.chain}.${tx.hash}`,
-      },
-    });
-  }, []);
-
   useEffect(() => {
     fetchList(chain, page, list[list.length - 1]?.id).catch(console.log);
   }, [chain, page]);
@@ -118,20 +106,11 @@ function Records() {
       </div>
       <div
         id="records_container"
-        className="absolute bottom-0 left-4 right-4 top-12 mt-5 overflow-auto"
+        className="absolute bottom-0 left-4 right-4 top-14 mt-5 overflow-auto"
       >
         <Spin spinning={loading}>
           {list.map((l) => (
-            <div
-              className="mb-4 rounded bg-gray0/20 p-4"
-              key={l.hash}
-              onClick={() => handleCardClick(l)}
-            >
-              <div className="text-wrap break-words">{l.message}</div>
-              <div className="mt-4 text-right">
-                {formatTimestamp(l.timestamp)}
-              </div>
-            </div>
+            <Card tx={l} key={l.hash}></Card>
           ))}
         </Spin>
       </div>

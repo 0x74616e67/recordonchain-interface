@@ -19,6 +19,10 @@ const QRCodeComponent = memo(function QRCodeComponent({
       {
         width,
         margin: 2,
+        color: {
+          dark: "#041733ff",
+          light: "#ffffff00",
+        },
       },
       function (error) {
         if (error) {

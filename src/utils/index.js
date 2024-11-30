@@ -126,7 +126,8 @@ export function getBackendURL(path) {
 
 export function formatTimestamp(t) {
   const now = new Date(Number(t) * 1000);
-  return `${now.toLocaleDateString()} ${now.toLocaleTimeString()}`;
+  // return `${now.toLocaleDateString()} ${now.toLocaleTimeString()}`;
+  return `${now.toLocaleDateString()}`;
 }
 
 export function getTxURL(chain, hash) {
@@ -162,7 +163,7 @@ export async function getRecords({
       `${url}?page=${page}&pageSize=${pageSize}&chain=${chain}&order=${order}`,
       {
         method: "GET",
-      }
+      },
     );
 
     if (response.code === 0) {

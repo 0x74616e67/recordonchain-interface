@@ -1,12 +1,13 @@
 import { useRouter } from "next/router";
 import { useCallback, useEffect, useState } from "react";
 import { useTxStore } from "@/utils/store";
-import { formatTimestamp, getTxURL, getTxInfo } from "@/utils";
+import { getTxURL, getTxInfo } from "@/utils";
 import SharePanel from "@/components/SharePanel";
 import Spin from "@/components/Spin";
 import { useTranslations } from "use-intl";
 import Head from "next/head";
 import Button from "@/components/Button";
+import Card from "@/components/Card";
 
 export default function Record() {
   const router = useRouter();
@@ -102,16 +103,7 @@ export default function Record() {
                 ),
               })}
             </div>
-            <div className="my-2 rounded bg-gray0/20 p-4">
-              {tx.message ? (
-                <div className="text-wrap break-words">{tx.message}</div>
-              ) : (
-                <div className="text-gray0">{t("noContent")}</div>
-              )}
-              <div className="mt-4 text-right">
-                {tx.timestamp ? formatTimestamp(tx.timestamp) : ""}
-              </div>
-            </div>
+            <Card tx={tx} className="mt-2" disabled></Card>
             {errorKey !== "" && (
               <div className="text-sm text-red-600">
                 {t.rich(`error.${errorKey}`, {

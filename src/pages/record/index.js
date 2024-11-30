@@ -157,19 +157,19 @@ export default function Create() {
                 id="record"
                 name="record"
                 autoComplete="record-name"
-                rows={6}
+                rows={8}
                 placeholder=""
-                className="block w-full resize-none rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6"
+                className="block w-full resize-none rounded border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6"
                 resize="none"
                 onChange={handleRecordChange}
                 value={message}
                 maxLength={MAX_CHARACTER_LENGTH}
               />
               <span
-                className={`absolute bottom-2 right-2 ${
+                className={`absolute bottom-2 right-2 text-sm ${
                   message.length >= MAX_CHARACTER_LENGTH
                     ? "text-red-500"
-                    : "text-gray0"
+                    : "text-gray2/40"
                 }`}
               >
                 {message.length}/{MAX_CHARACTER_LENGTH}
@@ -190,7 +190,9 @@ export default function Create() {
                 <Chains></Chains>
               </Tip>
             </label>
-            <ChainComponent onChange={handleChainChange} value={chain} />
+            <div className="mt-2">
+              <ChainComponent onChange={handleChainChange} value={chain} />
+            </div>
           </div>
 
           {/* code input */}
@@ -211,7 +213,7 @@ export default function Create() {
                 name="code"
                 autoComplete="code-name"
                 type="text"
-                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:max-w-xs sm:text-sm sm:leading-6"
+                className="block w-full rounded border-0 py-3 text-sm text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:max-w-xs sm:leading-6"
                 onChange={handleCodeChange}
                 value={code}
                 placeholder={t(`code.placeholder.${chain}`)}
