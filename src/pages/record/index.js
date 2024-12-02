@@ -77,6 +77,10 @@ export default function Create() {
           setErrorCodeKey("invalid");
         } else if (resp.code === 1002) {
           setErrorCodeKey("database");
+        } else if (resp.code === 1005) {
+          setErrorCodeKey("verified");
+        } else if (resp.code === 1006) {
+          setErrorCodeKey("locked");
         } else {
           setErrorKey("send");
         }

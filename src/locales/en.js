@@ -110,6 +110,8 @@ export default {
         empty: "Verification code cannot be empty",
         invalid: "Verification code is invalid or is verified",
         database: "Verification code verification failed",
+        verified: "Verification code is verified",
+        locked: "Verification code is locked",
       },
     },
     submit: "Submit",

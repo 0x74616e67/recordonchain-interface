@@ -110,6 +110,8 @@ export default {
         empty: "验证码不能为空",
         invalid: "验证码不存在或已经使用过",
         database: "验证码校验失败，请重试",
+        verified: "验证码已经使用过",
+        locked: "验证码已经被锁定",
       },
     },
     submit: "提交",
