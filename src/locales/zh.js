@@ -144,6 +144,7 @@ export default {
     locale: "语言",
     chain: "平台",
     contact: "联系我们",
+    customerService: "客服微信",
   },
   Terms: {
     Dialog: {

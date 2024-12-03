@@ -3,6 +3,7 @@ import { useTranslations } from "use-intl";
 import Head from "next/head";
 import Locale from "./Locale";
 import Chain from "./Chain";
+import CustomerService from "./CustomerService";
 
 function Setting({}) {
   const t = useTranslations("Setting");
@@ -26,6 +27,8 @@ function Setting({}) {
           contact@qukuailianji.com
         </a>
       </div>
+      <div className="mt-4"></div>
+      <CustomerService></CustomerService>
     </>
   );
 }

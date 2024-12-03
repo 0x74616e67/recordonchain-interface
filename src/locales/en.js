@@ -144,6 +144,7 @@ export default {
     locale: "Language",
     chain: "Platform",
     contact: "Contact Us",
+    customerService: "Customer Service WeChat",
   },
   Terms: {
     Dialog: {
