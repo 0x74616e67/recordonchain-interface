@@ -151,16 +151,16 @@ export function resolveShareURL(url) {
 }
 
 export async function getRecords({
-  page = 1,
   pageSize = 10,
   chain = "conflux",
   order = "desc",
+  startRowId,
 }) {
   const url = getBackendURL("/records");
 
   try {
     const response = await fetch(
-      `${url}?page=${page}&pageSize=${pageSize}&chain=${chain}&order=${order}`,
+      `${url}?startRowId=${startRowId}&pageSize=${pageSize}&chain=${chain}&order=${order}`,
       {
         method: "GET",
       },

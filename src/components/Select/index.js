@@ -12,8 +12,14 @@ export default function Select({
   onChange = () => {},
   optionContainerClassName = "",
 }) {
+  const handleChange = (option) => {
+    if (value !== option) {
+      onChange(option);
+    }
+  };
+
   return (
-    <Listbox value={value} onChange={onChange}>
+    <Listbox value={value} onChange={handleChange}>
       <div className="relative sm:max-w-xs">
         <ListboxButton className="relative w-full cursor-default rounded bg-white py-3 pl-3 pr-10 text-left text-sm text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-600 sm:leading-6">
           <span className="ml-3 block truncate">{value.label}</span>

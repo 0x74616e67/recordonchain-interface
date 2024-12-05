@@ -19,6 +19,7 @@ function Records() {
 
   const [loading, setLoading] = useState(false);
   const [list, setList] = useState([]);
+  // 请求里面不用 page，用 startRowId 和 pageSize 进行翻页处理。这里用来作为 fetchList 依赖。进行列表刷新
   const [page, setPage] = useState(1);
   const [chain, setChain] = useState(chainStore.chain);
 
@@ -28,13 +29,12 @@ function Records() {
     setChain(option.value);
   }, []);
 
-  const fetchList = useCallback(async (chain, page, startRowId) => {
+  const fetchList = useCallback(async (chain, startRowId) => {
     try {
       setLoading(true);
 
       let newList = await getRecords({
         chain,
-        page,
         startRowId,
       });
 
@@ -70,7 +70,7 @@ function Records() {
   }, []);
 
   useEffect(() => {
-    fetchList(chain, page, list[list.length - 1]?.id).catch(console.log);
+    fetchList(chain, list[list.length - 1]?.id).catch(console.log);
   }, [chain, page]);
 
   useEffect(() => {
