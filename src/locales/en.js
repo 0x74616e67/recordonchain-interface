@@ -95,9 +95,10 @@ export default {
     },
     chain: {
       label: "Select a recording platform",
+      all: "All",
       conflux: "Conflux - Chinese platform",
       ethereum: "Ethereum - International platform",
-      freetrail: "Free Trial Offer - For experience only",
+      freetrail: "Free trial - Experience platform, regularly deleted",
     },
     code: {
       label: "Enter confirmation code",
@@ -129,6 +130,7 @@ export default {
       link: "Invalid link, unable to get blockchain content",
       getTxInfo: "Failed to get record, please <button>try again</button>",
     },
+    save: "Long press the image to save",
   },
   Records: {
     meta: {
@@ -142,7 +144,7 @@ export default {
     },
     title: "Setting",
     locale: "Language",
-    chain: "Platform",
+    chain: "Default Platform",
     contact: "Contact Us",
     customerService: "Customer Service WeChat",
   },

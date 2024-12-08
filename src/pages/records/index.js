@@ -2,15 +2,11 @@ import { memo, useState, useEffect, useCallback, useRef } from "react";
 import { useTranslations } from "use-intl";
 import Head from "next/head";
 import { getRecords, SCROLL_DISTANCE } from "@/utils";
-import { useChainStore } from "@/utils/store";
 import Spin from "@/components/Spin";
 import ChainComponent from "@/components/Chain";
 import Card from "@/components/Card";
 
 function Records() {
-  const chainStore = useChainStore((state) => ({
-    chain: state.chain,
-  }));
   const t = useTranslations("Records");
   const tSetting = useTranslations("Setting");
 
@@ -21,7 +17,7 @@ function Records() {
   const [list, setList] = useState([]);
   // 请求里面不用 page，用 startRowId 和 pageSize 进行翻页处理。这里用来作为 fetchList 依赖。进行列表刷新
   const [page, setPage] = useState(1);
-  const [chain, setChain] = useState(chainStore.chain);
+  const [chain, setChain] = useState("");
 
   const handleChainChange = useCallback((option) => {
     setPage(1);
@@ -102,7 +98,12 @@ function Records() {
       </Head>
       <div className={`flex grid grid-cols-2 items-center gap-4`}>
         <label>{tSetting("chain")}</label>
-        <ChainComponent onChange={handleChainChange} value={chain} />
+        <ChainComponent
+          onChange={handleChainChange}
+          value={chain}
+          all
+          trail={false}
+        />
       </div>
       <div
         id="records_container"

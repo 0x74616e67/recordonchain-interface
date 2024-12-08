@@ -39,24 +39,25 @@ export default function Home() {
   );
 
   return (
-    <>
+    <div className="flex h-full flex-col">
       <Head>
         <title>{t("meta.title")}</title>
       </Head>
+
       <div className="text-base">
         <div className="indent-8">{t("introduction.label1")}</div>
         <div className="mt-2 indent-8">{t("introduction.label2")}</div>
         <div className="mt-2 indent-8">{t("introduction.label3")}</div>
       </div>
 
-      <div className="mt-3">
+      <div className="mt-3 grow">
         {records.map((r) => (
           <Card key={r.hash} tx={r}></Card>
         ))}
       </div>
 
       <div
-        className={`text-xs font-light ${
+        className={`pb-3 text-xs font-light ${
           process.env.NEXT_PUBLIC_SERVER_IS === "inside" ? "" : "hidden"
         }`}
       >
@@ -92,6 +93,6 @@ export default function Home() {
       >
         <span className="mt-[-4px] text-4xl">+</span>
       </Link> */}
-    </>
+    </div>
   );
 }

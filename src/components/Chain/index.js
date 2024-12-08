@@ -2,10 +2,10 @@ import { memo } from "react";
 import { useTranslations } from "use-intl";
 import Select from "@/components/Select";
 
-function Chain({ value, onChange, className }) {
+function Chain({ value, onChange, className, all = false, trail = true }) {
   const t = useTranslations();
 
-  const options = [
+  let options = [
     {
       value: "conflux",
       label: t("Record.chain.conflux"),
@@ -14,11 +14,21 @@ function Chain({ value, onChange, className }) {
       value: "ethereum",
       label: t("Record.chain.ethereum"),
     },
-    {
+  ];
+
+  if (all) {
+    options.unshift({
+      value: "",
+      label: t("Record.chain.all"),
+    });
+  }
+
+  if (trail) {
+    options.push({
       value: "confluxevmtestnet",
       label: t("Record.chain.freetrail"),
-    },
-  ];
+    });
+  }
 
   const v = options.find((o) => o.value === value) || options[0];
 

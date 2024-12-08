@@ -95,9 +95,10 @@ export default {
     },
     chain: {
       label: "选择记录平台",
+      all: "全部",
       conflux: "Conflux - 国内平台",
       ethereum: "Ethereum - 国际平台",
-      freetrail: "免费试用 - 仅供体验",
+      freetrail: "免费试用 - 体验平台，定期删除",
     },
     code: {
       label: "输入验证码",
@@ -129,6 +130,7 @@ export default {
       link: "链接无效，无法获取链上内容",
       getTxInfo: "获取记录失败，请<button>重试</button>",
     },
+    save: "长按图片保存",
   },
   Records: {
     meta: {
@@ -142,7 +144,7 @@ export default {
     },
     title: "设置",
     locale: "语言",
-    chain: "平台",
+    chain: "默认平台",
     contact: "联系我们",
     customerService: "客服微信",
   },

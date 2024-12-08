@@ -14,6 +14,7 @@ const SharePanel = React.memo(function SharePanel({
 }) {
   const t = useTranslations("Common");
   const tMeta = useTranslations("Meta");
+  const tDetail = useTranslations("Detail");
 
   const [loading, setLoading] = useState(false);
   // 为了防止 bg_img 加载完成后 qrcode 还未渲染完，导致 qrcode 缺失，此处优先生成 qrcode，成功后再生成 bg_img
@@ -194,7 +195,8 @@ const SharePanel = React.memo(function SharePanel({
           </div>
         </div>
       </div>
-      <div className="mt-4 flex h-14 justify-items-stretch">
+      <small className="mt-2 text-right text-blue-600">{tDetail("save")}</small>
+      <div className="mt-2 flex h-14 justify-items-stretch">
         <div className={`h-14 w-14`} onClick={() => handleTemplateClick(0)}>
           <img
             src={"/h.jpg"}

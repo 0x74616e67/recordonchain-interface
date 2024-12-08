@@ -42,7 +42,6 @@ body {
   );
 
   /* pc 端暂时没做适配，用的移动端样式 */
-  max-height: 1280px;
   max-width: 720px;
 }
 
