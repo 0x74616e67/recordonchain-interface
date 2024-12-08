@@ -16,6 +16,14 @@ const SharePanel = React.memo(function SharePanel({
   const tMeta = useTranslations("Meta");
   const tDetail = useTranslations("Detail");
 
+  useEffect(() => {
+    if (!open) {
+      setTimeout(() => {
+        setTemplateIndex(0);
+      }, 500);
+    }
+  }, [open]);
+
   const [loading, setLoading] = useState(false);
   // 为了防止 bg_img 加载完成后 qrcode 还未渲染完，导致 qrcode 缺失，此处优先生成 qrcode，成功后再生成 bg_img
   const [isQrcodeReady, setIsQrcodeReady] = useState(false);

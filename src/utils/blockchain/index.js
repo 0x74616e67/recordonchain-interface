@@ -15,9 +15,9 @@ const NETWORKS = {
   },
   // free trail network
   confluxevmtestnet: {
-    rpcUrl: process.env.NEXT_PUBLIC_CONFLUX_RPC_URL,
-    to: process.env.NEXT_PUBLIC_CONFLUX_TO,
-    scanUrl: process.env.NEXT_PUBLIC_CONFLUX_SCAN_URL,
+    rpcUrl: process.env.NEXT_PUBLIC_CONFLUX_TESTNET_ESPACE_RPC_URL,
+    to: process.env.NEXT_PUBLIC_CONFLUX_TESTNET_ESPACE_TO,
+    scanUrl: process.env.NEXT_PUBLIC_CONFLUX_TESTNET_ESPACE_SCAN_URL,
   },
 };
 
