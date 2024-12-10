@@ -80,6 +80,7 @@ export default function App({ Component, pageProps }) {
             name="keywords"
             content={process.env.NEXT_PUBLIC_META_KEYWORDS}
           ></meta>
+          <link rel="icon" href="/favicon.ico" type="image/x-icon" />
         </Head>
         <Component {...pageProps} />
         {process.env.NEXT_PUBLIC_ANALYSIS === "true" ? (

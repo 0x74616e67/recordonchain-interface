@@ -124,7 +124,7 @@ export default {
     },
     title: "Record Detail",
     share: "Share",
-    link: "The content recorded on the blockchain ( <scan>Detail</scan> ) :",
+    link: "The content recorded on the blockchain ( <scan>On-chain Detail</scan> ) :",
     noContent: "No content",
     error: {
       link: "Invalid link, unable to get blockchain content",

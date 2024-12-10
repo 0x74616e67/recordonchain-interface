@@ -140,7 +140,7 @@ export function getTxURL(chain, hash) {
 }
 
 export function getShareURL(chain, hash) {
-  return `${location.host}/record/detail?tx=${chain}.${hash}`;
+  return `${location.protocol}//${location.host}/record/detail?tx=${chain}.${hash}`;
 }
 
 export function resolveShareURL(url) {

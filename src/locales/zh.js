@@ -124,7 +124,7 @@ export default {
     },
     title: "记录详情",
     share: "分享",
-    link: "区块链上记录的内容（<scan>详情</scan>）：",
+    link: "区块链上记录的内容（<scan>链上详情</scan>）：",
     noContent: "暂无内容",
     error: {
       link: "链接无效，无法获取链上内容",
