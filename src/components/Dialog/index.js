@@ -80,7 +80,7 @@ function DialogComponent({
                   >
                     {title}
                   </DialogTitle>
-                  <div className="mt-4 flex max-h-[60vh] flex-col">
+                  <div className="mt-4 flex max-h-[70vh] flex-col">
                     {children}
                   </div>
                 </div>

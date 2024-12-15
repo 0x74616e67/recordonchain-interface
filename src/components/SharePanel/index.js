@@ -182,7 +182,7 @@ const SharePanel = React.memo(function SharePanel({
         </div>
 
         <div className="flex-none shrink-0 px-2 pb-2">
-          <div className="text-wrap break-words text-left">{tx.message}</div>
+          <pre className="text-wrap break-words text-left">{tx.message}</pre>
           <div className="mt-8 text-right text-sm text-gray-900/60">
             {formatTimestamp(tx.timestamp)}
           </div>

@@ -41,7 +41,7 @@ const Card = memo(function Card({
     >
       {tx.hash ? (
         <>
-          <div className="text-wrap break-words">{tx.message}</div>
+          <pre className="text-wrap break-words">{tx.message}</pre>
           <div className="mt-4 text-right text-sm text-gray-900/60">
             {formatTimestamp(tx.timestamp)}
           </div>

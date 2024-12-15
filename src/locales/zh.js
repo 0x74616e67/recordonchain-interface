@@ -130,7 +130,7 @@ export default {
       link: "链接无效，无法获取链上内容",
       getTxInfo: "获取记录失败，请<button>重试</button>",
     },
-    save: "长按图片保存",
+    save: "长按上面的图片保存 ↑",
   },
   Records: {
     meta: {

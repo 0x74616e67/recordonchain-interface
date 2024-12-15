@@ -102,7 +102,7 @@ function Records() {
           onChange={handleChainChange}
           value={chain}
           all
-          trail={false}
+          trail={process.env.NODE_ENV === "development"}
         />
       </div>
       <div

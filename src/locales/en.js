@@ -130,7 +130,7 @@ export default {
       link: "Invalid link, unable to get blockchain content",
       getTxInfo: "Failed to get record, please <button>try again</button>",
     },
-    save: "Long press the image to save",
+    save: "Long press the image above to save ↑",
   },
   Records: {
     meta: {

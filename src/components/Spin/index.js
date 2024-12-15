@@ -5,10 +5,13 @@ import Image from "next/image";
 const SpinComponent = memo(function SpinComponent({
   spinning = false,
   children,
+  className,
 }) {
   return (
     <>
-      <div className={spinning ? "blur-sm" : ""}>{children}</div>
+      <div className={`${className} ${spinning ? "blur-sm" : ""}`}>
+        {children}
+      </div>
       {spinning ? (
         <div className="fixed bottom-0 left-0 right-0 top-0 flex items-center justify-center">
           <svg

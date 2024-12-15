@@ -87,46 +87,42 @@ export default function Record() {
         onCancel={handleClose}
       ></SharePanel>
 
-      <Spin spinning={loading}>
+      <Spin spinning={loading} className="flex max-h-full flex-col">
         <div>
-          <div>
-            <div>
-              {t.rich("link", {
-                scan: (chunks) => (
-                  <a
-                    className="text-blue-600 hover:text-blue-500"
-                    href={getTxURL(tx.chain, tx.hash)}
-                    target="_blank"
-                  >
-                    {chunks}
-                  </a>
-                ),
-              })}
-            </div>
-            <Card tx={tx} className="mt-2" disabled></Card>
-            {errorKey !== "" && (
-              <div className="text-sm text-red-600">
-                {t.rich(`error.${errorKey}`, {
-                  button: (chunks) => (
-                    <button
-                      className="text-red-600 underline visited:text-red-500 hover:text-red-700"
-                      onClick={() => getInfo()}
-                    >
-                      {chunks}
-                    </button>
-                  ),
-                })}
-              </div>
-            )}
-            <Button
-              onClick={handleShare}
-              disabled={disabled}
-              className="float-right"
-            >
-              {t("share")}
-            </Button>
-          </div>
+          {t.rich("link", {
+            scan: (chunks) => (
+              <a
+                className="text-blue-600 hover:text-blue-500"
+                href={getTxURL(tx.chain, tx.hash)}
+                target="_blank"
+              >
+                {chunks}
+              </a>
+            ),
+          })}
         </div>
+        <Card tx={tx} className="mt-2 shrink overflow-auto" disabled></Card>
+        {errorKey !== "" && (
+          <div className="text-sm text-red-600">
+            {t.rich(`error.${errorKey}`, {
+              button: (chunks) => (
+                <button
+                  className="text-red-600 underline visited:text-red-500 hover:text-red-700"
+                  onClick={() => getInfo()}
+                >
+                  {chunks}
+                </button>
+              ),
+            })}
+          </div>
+        )}
+        <Button
+          onClick={handleShare}
+          disabled={disabled}
+          className="float-right"
+        >
+          {t("share")}
+        </Button>
       </Spin>
     </>
   );

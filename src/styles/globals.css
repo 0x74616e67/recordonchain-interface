@@ -45,6 +45,10 @@ body {
   max-width: 720px;
 }
 
+pre {
+  font-family: inherit;
+}
+
 #__next {
   height: 100%;
 }

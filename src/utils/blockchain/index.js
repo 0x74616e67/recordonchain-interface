@@ -1,8 +1,12 @@
 const ethers = require("ethers");
 
-// TODO 以太坊和 fork 的链共用一个私钥
-// 后期要考虑一下是用 EOA 还是合约地址
 const NETWORKS = {
+  // free trail network
+  confluxevmtestnet: {
+    rpcUrl: process.env.NEXT_PUBLIC_CONFLUX_TESTNET_ESPACE_RPC_URL,
+    to: process.env.NEXT_PUBLIC_CONFLUX_TESTNET_ESPACE_TO,
+    scanUrl: process.env.NEXT_PUBLIC_CONFLUX_TESTNET_ESPACE_SCAN_URL,
+  },
   conflux: {
     rpcUrl: process.env.NEXT_PUBLIC_CONFLUX_RPC_URL,
     to: process.env.NEXT_PUBLIC_CONFLUX_TO,
@@ -12,12 +16,6 @@ const NETWORKS = {
     rpcUrl: process.env.NEXT_PUBLIC_ETHEREUM_RPC_URL,
     to: process.env.NEXT_PUBLIC_ETHEREUM_TO,
     scanUrl: process.env.NEXT_PUBLIC_ETHEREUM_SCAN_URL,
-  },
-  // free trail network
-  confluxevmtestnet: {
-    rpcUrl: process.env.NEXT_PUBLIC_CONFLUX_TESTNET_ESPACE_RPC_URL,
-    to: process.env.NEXT_PUBLIC_CONFLUX_TESTNET_ESPACE_TO,
-    scanUrl: process.env.NEXT_PUBLIC_CONFLUX_TESTNET_ESPACE_SCAN_URL,
   },
 };
 
