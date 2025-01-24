@@ -1,7 +1,7 @@
 import fetch from "./fetch";
 import { getTransactionInfo, getNetwork } from "./blockchain";
 
-export const MAX_CHARACTER_LENGTH = 200;
+export const MAX_CHARACTER_LENGTH = 1000;
 
 export const SCROLL_DISTANCE = 60;
 

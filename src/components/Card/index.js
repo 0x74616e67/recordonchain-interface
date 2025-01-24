@@ -45,9 +45,15 @@ const Card = memo(function Card({
           <div className="mt-4 text-right text-sm text-gray-900/60">
             {formatTimestamp(tx.timestamp)}
           </div>
-          <div className="text-right text-sm text-gray-900/60">
-            <span>{tCommon("recordOn")} </span>
-            {tx.chain.charAt(0).toUpperCase() + tx.chain.slice(1)}
+          <div className="flex justify-end text-right text-sm text-gray-900/60">
+            <span className="mr-2">{tCommon("recordOn")} </span>
+            <span className="flex">
+              <img
+                className="mr-1 w-3"
+                src={`/chains/${tx.chain}-logo.svg`}
+              ></img>
+              {tx.chain.charAt(0).toUpperCase() + tx.chain.slice(1)}
+            </span>
           </div>
         </>
       ) : (

@@ -2,7 +2,8 @@ export default {
   Meta: {
     title: "Qu Kuai Lian Ji",
     description:
-      "Qu Kuai Lian Ji, a platform based on blockchain technology, allows you to record your precious thoughts permanently.",
+      "Qu Kuai Lian Ji, a platform based on blockchain technology, allows you to permanently record your precious thoughts, which cannot be tampered with and are stored in a decentralized manner.",
+    brief: "Permanently record your precious thoughts.",
   },
   Common: {
     button: {
@@ -18,12 +19,14 @@ export default {
       price: {
         title: "Verification Code Price: ",
         p1: "Depending on the selected blockchain platform, the price is as follows: ",
-        li: "<li>Conflux：2 Yuan/Per Record</li><li>Ethereum：10 Yuan/Per Record</li>",
+        li: "<li>Conflux: <b>Holiday Specials $0.15</b> <strike>$0.3</strike> / Per Record</li><li>Ethereum: <b>Holiday Specials $15</b> <strike>$30</strike> / Per Record</li>",
         p2: "Users can choose a suitable blockchain platform according to their needs.",
       },
       approach: {
         title: "Where to Buy:",
-        li: "<li>Taobao Store</li><li>Xianyu</li><li><span>Add customer service WeChat to purchase</span><img></img></li><li>Scan code to purchase (not yet supported)</li>",
+        // li: "<li>Taobao Store</li><li>Xianyu</li><li><span>Add customer service WeChat to purchase</span><img></img></li><li>Scan code to purchase (not yet supported)</li>",
+        ap: "<li><span>Add customer service WeChat to purchase</span><img></img></li>",
+        ap2: "<li><span>Contact us</span></li>",
       },
       qa: {
         title: "Questions and Answers: ",
@@ -54,11 +57,11 @@ export default {
         "There are many blockchain platforms on the market, which vary in technology, usage scenarios, and development teams. Here, we will focus on two platforms:",
       conflux: {
         title: "Conflux: ",
-        li: "<li>Conflux is a <b>domestic compliant public, permissionless blockchain project</b>, providing blockchain technology services to domestic and foreign companies. </li><li>Most of the founding team members are from <b>Tsinghua Yao Class</b>. After two years of intensive research and development, Conflux (Tree Graph Chain) was officially launched on October 29, 2020. </li><li>Conflux participates in multiple domestic projects and institutions, such as <b>Hunan Xiangjiang Tree Graph, Shanghai Tree Graph Research Institute, and China Telecom BSIM Card</b>. </li><li>Conflux's mission is to <b>promote the development of China's public chain</b> and allow Chinese people to participate in the rule-making and ecological construction of the next generation of blockchain. </li>",
+        li: "<li>Conflux is a <b>domestic compliant public, permissionless blockchain project</b>, providing blockchain technology services to domestic and foreign companies. </li><li>Most of the founding team members are from <b>Tsinghua University's Yao Class</b>. After two years of intensive research and development, Conflux (Tree Graph Chain) was officially launched on October 29, 2020. </li><li>Conflux participates in multiple domestic projects and institutions, such as <b>Hunan Xiangjiang Tree Graph, Shanghai Tree Graph Research Institute, and China Telecom BSIM Card</b>. </li><li>Conflux's mission is to <b>promote the development of China's public chain</b> and allow Chinese people to participate in the rule-making and ecological construction of the next generation of blockchain. </li>",
       },
       ethereum: {
         title: "Ethereum: ",
-        li: "<li>Ethereum is the <b>world's leading blockchain platform</b>, dedicated to innovating all industries through blockchain technology. </li><li>Ethereum <b>first created smart contracts</b>, enabling direct interaction between users, including the storage of text content. </li><li>Currently, Ethereum is <b>second in the world's blockchain rankings, second only to Bitcoin. </b></li><li>The project was <b>launched in 2015</b> by Vitalik Buterin and quickly became an important cornerstone in the blockchain field. After continuous iterations, Ethereum 2.0, launched in 2022, significantly improved the platform's scalability, security, and energy efficiency, consolidating its key position in the global blockchain ecosystem. </li>",
+        li: "<li>Ethereum is the <b>world's leading blockchain platform</b>, dedicated to innovating all industries through blockchain technology. </li><li>Ethereum <b>first created smart contracts</b>, enabling direct interaction between users, including the storage of text content. </li><li>Currently, Ethereum is <b>second in the world's blockchain rankings, second only to Bitcoin (No programming support). </b></li><li>The project was <b>launched in 2015</b> by Vitalik Buterin and quickly became an important cornerstone in the blockchain field. After continuous iterations, Ethereum 2.0, launched in 2022, significantly improved the platform's scalability, security, and energy efficiency, consolidating its key position in the global blockchain ecosystem. </li>",
       },
     },
   },

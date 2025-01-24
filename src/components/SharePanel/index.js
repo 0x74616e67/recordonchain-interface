@@ -186,13 +186,20 @@ const SharePanel = React.memo(function SharePanel({
           <div className="mt-8 text-right text-sm text-gray-900/60">
             {formatTimestamp(tx.timestamp)}
           </div>
-          <div className="text-right text-sm text-gray-900/60">
-            <span>{t("recordOn")} </span>
-            {tx.chain.charAt(0).toUpperCase() + tx.chain.slice(1)}
+          <div className="flex justify-end text-right text-sm text-gray-900/60">
+            <span className="mr-2">{t("recordOn")} </span>
+            <span className="flex items-center">
+              {/* <img className="mr-1 w-3" src={`/chains/${tx.chain}-logo.svg`}></img> */}
+              {tx.chain.charAt(0).toUpperCase() + tx.chain.slice(1)}
+            </span>
           </div>
           <div className="items-between mt-8 flex flex-row justify-between border-t pt-7">
-            <span className="mb-1 flex items-end text-base">
-              {tMeta("title")}
+            <span className="mb-2 flex flex-col items-start justify-end text-base">
+              <div>{tMeta("title")} </div>
+              <small className="-mt-1 font-light">www.qukuailianji.com</small>
+              <small className="ml-[1px] text-left text-xs font-light text-gray-900/80">
+                - {tMeta("brief")}
+              </small>
             </span>
             <QRCode
               className="float-right self-end"

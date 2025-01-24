@@ -12,6 +12,8 @@ function GetCode() {
         <ul className="ml-4 list-disc">
           {t.rich("price.li", {
             li: (chunks) => <li>{chunks}</li>,
+            b: (chunks) => <b>{chunks}</b>,
+            strike: (chunks) => <strike>{chunks}</strike>,
           })}
         </ul>
         <p>{t("price.p2")}</p>
@@ -19,7 +21,7 @@ function GetCode() {
       <div className="mt-4">
         <h3 className="text-base font-bold">{t("approach.title")}</h3>
         <ul className="ml-4 list-disc">
-          {t.rich("approach.li", {
+          {t.rich("approach.ap", {
             li: (chunks) => <li>{chunks}</li>,
             span: (chunks) => <span>{chunks}</span>,
             img: () => (
@@ -28,6 +30,21 @@ function GetCode() {
                 className="w-3/5"
                 alt="wechat qrcode"
               ></img>
+            ),
+          })}
+          {t.rich("approach.ap2", {
+            li: (chunks) => <li>{chunks}</li>,
+            span: (chunks) => (
+              <span>
+                {chunks}{" "}
+                <a
+                  className="col-span-2 text-right text-blue-600 hover:text-blue-500"
+                  href="mailto:contact@qukuailianji.com"
+                  target="__blank"
+                >
+                  contact@qukuailianji.com
+                </a>
+              </span>
             ),
           })}
         </ul>
