@@ -19,7 +19,7 @@ export default {
       price: {
         title: "Verification Code Price: ",
         p1: "Depending on the selected blockchain platform, the price is as follows: ",
-        li: "<li>Conflux: <b>Holiday Specials $0.15</b> <strike>$0.3</strike> / Per Record</li><li>Ethereum: <b>Holiday Specials $15</b> <strike>$30</strike> / Per Record</li>",
+        li: "<li>Conflux: <b>Holiday Specials $0.75</b> <strike>$1.5</strike> / Per Record</li><li>Ethereum: <b>Holiday Specials $15</b> <strike>$30</strike> / Per Record</li>",
         p2: "Users can choose a suitable blockchain platform according to their needs.",
       },
       approach: {

@@ -20,7 +20,7 @@ export default {
         title: "验证码价格：",
         // p1: "根据所选的区块链平台不同，价格如下：",
         p1: "根据所选的区块链平台不同，价格如下：",
-        li: "<li>Conflux：<b>假日特惠 0.99</b> <strike>1.99</strike> 元 / 次</li><li>Ethereum：<b>假日特惠 99</b> <strike>199</strike> 元 / 次</li>",
+        li: "<li>Conflux：<b>假日特惠 4.99</b> <strike>9.99</strike> 元 / 次</li><li>Ethereum：<b>假日特惠 99</b> <strike>199</strike> 元 / 次</li>",
         p2: "用户可以根据需求选择适合的区块链平台。",
       },
       approach: {
